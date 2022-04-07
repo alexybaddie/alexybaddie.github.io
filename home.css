@@ -150,7 +150,6 @@
 }
 .home-heading1 {
   color: #040404;
-  align-self: center;
   margin-bottom: var(--dl-space-space-tripleunit);
 }
 .home-text {
@@ -225,6 +224,7 @@
   margin-bottom: var(--dl-space-space-fourunits);
 }
 .home-text04 {
+  margin-top: -25px;
   text-align: center;
 }
 .home-cards-container {
@@ -236,7 +236,7 @@
   justify-content: space-between;
 }
 .home-card {
-  width: 30%;
+  width: 400px;
   display: flex;
   align-items: center;
   padding-top: var(--dl-space-space-doubleunit);
@@ -254,12 +254,9 @@
   margin-bottom: var(--dl-space-space-tripleunit);
   flex-direction: column;
 }
-.home-icon04 {
-  fill: var(--dl-color-danger-700);
-  width: 100px;
-  height: 100px;
-  min-width: 100px;
-  min-height: 100px;
+.home-iframe {
+  width: 400px;
+  height: 260px;
 }
 .home-content-container {
   display: flex;
@@ -269,12 +266,10 @@
 .home-heading2 {
   margin-bottom: var(--dl-space-space-tripleunit);
 }
-.home-text05 {
-  text-align: center;
-}
 .home-card1 {
-  width: 30%;
+  width: 400px;
   display: flex;
+  align-self: center;
   align-items: center;
   padding-top: var(--dl-space-space-doubleunit);
   padding-left: var(--dl-space-space-doubleunit);
@@ -291,12 +286,9 @@
   margin-bottom: var(--dl-space-space-tripleunit);
   flex-direction: column;
 }
-.home-icon06 {
-  fill: var(--dl-color-danger-700);
-  width: 100px;
-  height: 100px;
-  min-width: 100px;
-  min-height: 100px;
+.home-iframe1 {
+  width: 400px;
+  height: 260px;
 }
 .home-content-container1 {
   display: flex;
@@ -306,11 +298,8 @@
 .home-heading3 {
   margin-bottom: var(--dl-space-space-tripleunit);
 }
-.home-text06 {
-  text-align: center;
-}
 .home-card2 {
-  width: 30%;
+  width: 400px;
   display: flex;
   align-items: center;
   padding-top: var(--dl-space-space-doubleunit);
@@ -328,12 +317,9 @@
   margin-bottom: var(--dl-space-space-tripleunit);
   flex-direction: column;
 }
-.home-icon08 {
-  fill: var(--dl-color-danger-700);
-  width: 100px;
-  height: 100px;
-  min-width: 100px;
-  min-height: 100px;
+.home-iframe2 {
+  width: 400px;
+  height: 260px;
 }
 .home-content-container2 {
   display: flex;
@@ -343,7 +329,8 @@
 .home-heading4 {
   margin-bottom: var(--dl-space-space-tripleunit);
 }
-.home-text07 {
+.home-text05 {
+  margin-top: -25px;
   text-align: center;
 }
 .home-about {
@@ -401,14 +388,14 @@
   flex-direction: row;
   justify-content: center;
 }
-.home-icon10 {
+.home-icon04 {
   width: 24px;
   height: 24px;
   min-width: 24px;
   min-height: 24px;
   margin-right: var(--dl-space-space-doubleunit);
 }
-.home-text09 {
+.home-text07 {
   text-align: left;
 }
 .home-container04 {
@@ -418,14 +405,14 @@
   flex-direction: row;
   justify-content: center;
 }
-.home-icon12 {
+.home-icon06 {
   width: 24px;
   height: 24px;
   min-width: 24px;
   min-height: 24px;
   margin-right: var(--dl-space-space-doubleunit);
 }
-.home-text10 {
+.home-text08 {
   text-align: left;
 }
 .home-container05 {
@@ -435,14 +422,14 @@
   flex-direction: row;
   justify-content: center;
 }
-.home-icon14 {
+.home-icon08 {
   width: 24px;
   height: 24px;
   min-width: 24px;
   min-height: 24px;
   margin-right: var(--dl-space-space-doubleunit);
 }
-.home-text11 {
+.home-text09 {
   text-align: left;
 }
 .home-about-11 {
@@ -463,14 +450,14 @@
   flex-direction: row;
   justify-content: center;
 }
-.home-icon16 {
+.home-icon10 {
   width: 24px;
   height: 24px;
   min-width: 24px;
   min-height: 24px;
   margin-right: var(--dl-space-space-doubleunit);
 }
-.home-text12 {
+.home-text10 {
   text-align: left;
 }
 .home-container07 {
@@ -480,14 +467,14 @@
   flex-direction: row;
   justify-content: center;
 }
-.home-icon18 {
+.home-icon12 {
   width: 24px;
   height: 24px;
   min-width: 24px;
   min-height: 24px;
   margin-right: var(--dl-space-space-doubleunit);
 }
-.home-text16 {
+.home-text14 {
   text-align: left;
 }
 .home-container08 {
@@ -497,14 +484,14 @@
   flex-direction: row;
   justify-content: center;
 }
-.home-icon20 {
+.home-icon14 {
   width: 24px;
   height: 24px;
   min-width: 24px;
   min-height: 24px;
   margin-right: var(--dl-space-space-doubleunit);
 }
-.home-text17 {
+.home-text15 {
   text-align: left;
 }
 .home-button {
@@ -551,10 +538,10 @@
   padding-right: var(--dl-space-space-tripleunit);
   flex-direction: column;
 }
-.home-text18 {
+.home-text16 {
   margin-bottom: var(--dl-space-space-fourunits);
 }
-.home-text19 {
+.home-text17 {
   text-align: center;
 }
 .home-logo-container {
@@ -612,10 +599,10 @@
   padding-right: var(--dl-space-space-tripleunit);
   flex-direction: column;
 }
-.home-text20 {
+.home-text18 {
   margin-bottom: var(--dl-space-space-fourunits);
 }
-.home-text21 {
+.home-text19 {
   text-align: center;
 }
 .home-pricing-card-container {
@@ -800,7 +787,7 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.home-text23 {
+.home-text21 {
   color: var(--dl-color-gray-700);
   align-self: center;
 }
@@ -818,7 +805,7 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.home-text25 {
+.home-text23 {
   color: var(--dl-color-gray-700);
 }
 .home-container11 {
@@ -835,7 +822,7 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.home-text27 {
+.home-text25 {
   color: var(--dl-color-gray-700);
 }
 .home-container12 {
@@ -847,7 +834,7 @@
   padding-bottom: var(--dl-space-space-doubleunit);
   justify-content: space-between;
 }
-.home-text29 {
+.home-text27 {
   color: var(--dl-color-gray-700);
 }
 .home-button1 {
@@ -920,7 +907,7 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.home-text31 {
+.home-text29 {
   color: var(--dl-color-gray-700);
 }
 .home-container14 {
@@ -937,7 +924,7 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.home-text33 {
+.home-text31 {
   color: var(--dl-color-gray-700);
 }
 .home-container15 {
@@ -954,7 +941,7 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.home-text35 {
+.home-text33 {
   color: var(--dl-color-gray-700);
 }
 .home-container16 {
@@ -966,7 +953,7 @@
   padding-bottom: var(--dl-space-space-doubleunit);
   justify-content: space-between;
 }
-.home-text37 {
+.home-text35 {
   color: var(--dl-color-gray-700);
 }
 .home-button2 {
@@ -1014,7 +1001,7 @@
   padding-bottom: var(--dl-space-space-fiveunits);
   justify-content: flex-start;
 }
-.home-text38 {
+.home-text36 {
   margin-bottom: var(--dl-space-space-fourunits);
 }
 .home-content-container4 {
@@ -1112,7 +1099,7 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-.home-answer2 {
+.home-answer1 {
   margin-bottom: var(--dl-space-space-unit);
 }
 .home-faq2 {
@@ -1157,7 +1144,7 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-.home-answer4 {
+.home-answer2 {
   margin-bottom: var(--dl-space-space-unit);
 }
 .home-section-separator5 {
@@ -1177,6 +1164,7 @@
 }
 .home-image2 {
   width: 50%;
+  height: 569px;
   object-fit: cover;
 }
 .home-container17 {
@@ -1197,7 +1185,7 @@
   margin-bottom: var(--dl-space-space-fiveunits);
   flex-direction: column;
 }
-.home-text39 {
+.home-text37 {
   margin-bottom: var(--dl-space-space-fourunits);
 }
 .home-textinput {
@@ -1258,17 +1246,17 @@
   align-items: flex-start;
   flex-direction: row;
 }
-.home-icon22 {
+.home-icon16 {
   width: 24px;
   height: 24px;
   margin-right: var(--dl-space-space-doubleunit);
 }
-.home-icon24 {
+.home-icon18 {
   width: 24px;
   height: 24px;
   margin-right: var(--dl-space-space-doubleunit);
 }
-.home-icon26 {
+.home-icon20 {
   width: 24px;
   height: 24px;
 }
@@ -1278,7 +1266,7 @@
   align-items: center;
   flex-direction: row;
 }
-.home-icon28 {
+.home-icon22 {
   width: 24px;
   height: 24px;
   margin-right: var(--dl-space-space-doubleunit);
@@ -1372,7 +1360,7 @@
   .home-heading-container1 {
     width: 100%;
   }
-  .home-text08 {
+  .home-text06 {
     text-align: center;
   }
   .home-content-container3 {
@@ -1421,10 +1409,10 @@
   .home-heading-container4 {
     width: 100%;
   }
-  .home-text39 {
+  .home-text37 {
     text-align: center;
   }
-  .home-text40 {
+  .home-text38 {
     text-align: center;
   }
   .home-textinput {
@@ -1456,10 +1444,10 @@
   .home-about-11 {
     width: 100%;
   }
-  .home-text18 {
+  .home-text16 {
     text-align: center;
   }
-  .home-text20 {
+  .home-text18 {
     text-align: center;
   }
   .home-content-container4 {
