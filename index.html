@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Miszta</title>
+	<meta content="IT Technologies" property="og:title" />
+    <meta content="We are a business that dedicates our times in creating and maintaining both physical and virtual systems. We have a lot of experience with setting up networks and creating custom software for our clients. We are located in Kongsberg in Norway where we have been since the beginning. We now have completed multiple orders for big companies and are growing rapidly!" property="og:description" />
+    <meta content="https://alexandra.itmediakongsberg.no/it" property="og:url" />
+    <meta content="https://alexandra.itmediakongsberg.no/it/images/4742978.png" property="og:image" />
+    <meta content="#1fdaff" data-react-helmet="true" name="theme-color" />
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <!--Style css file link-->
+  	<link rel="stylesheet" href="styles\style.css">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  	<!--Navigation bar-->
+  	<div class="navbar">
+   		<a href="index.html" class="active">Home</a>
+   		<a href="ms.html">Submit</a>
+		
+  	</div>
+  	<header>
+    		<h2>MISZTA</h2>
+
+  			<!--Buttons-->
+
+  			<center>
+  				<button class="btnabout" onclick="window.scrollBy(0, 1250);">About</button>
+  				<button class="btncon" onclick="window.scrollBy(0, 2500);">Videos</button>
+  			</center>
+			
+  	</header>
+
+  	<section>
+			
+			<nav>
+    			<ul>
+    			</ul>
+  			</nav>
+    		<article>
+				<h3>WHO AM I?</h3>
+  				<text><center>We are a business that dedicates our times in creating and maintaining both physical and virtual systems. We have a lot of experience with setting up networks and creating custom software for our clients. We are located in Kongsberg in Norway where we have been since the beginning. We now have completed multiple orders for big companies and are growing rapidly!<br></center></text>
+
+  			<!--Buttons-->
+
+  				<center>
+  					<button class="btncon2" onclick="window.scrollBy(0, 1250);">Videos</button>
+  				</center>
+				
+    		</article>
+		
+			<videos>
+				<center><h2>RECENT VIDEOS</h2></center>
+  				<div class="row">
+				  <div class="column">
+					<iframe class="embed-responsive-item" vnum="0" frameborder="0" allowfullscreen></iframe>
+				  </div>
+				  <div class="column">
+					<iframe class="embed-responsive-item" vnum="1" frameborder="0" allowfullscreen></iframe>
+				  </div>
+				  <div class="column">
+					<iframe class="embed-responsive-item" vnum="2" frameborder="0" allowfullscreen></iframe>
+				  </div>
+				  <div class="column">
+					<iframe class="embed-responsive-item" vnum="3" frameborder="0" allowfullscreen></iframe>
+				  </div>
+				  <div class="column">
+					<iframe class="embed-responsive-item" vnum="4" frameborder="0" allowfullscreen></iframe>
+				  </div>
+				  <div class="column">
+					<iframe class="embed-responsive-item" vnum="5" frameborder="0" allowfullscreen></iframe>
+				  </div>
+				  <div class="column">
+					<iframe class="embed-responsive-item" vnum="6" frameborder="0" allowfullscreen></iframe>
+				  </div>
+				  <div class="column">
+					<iframe class="embed-responsive-item" vnum="7" frameborder="0" allowfullscreen></iframe>
+				  </div>
+					
+				  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+					<script>
+						var channelID = "UCTZeK5rWs3wDUQ7DxnpCcYw";
+						
+						var reqURL = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent("https://www.youtube.com/feeds/videos.xml?channel_id=");
+						function loadVideo(iframe) {
+						  $.getJSON(reqURL + channelID, // iframe.getAttribute('cid')
+							function(data) {
+							  var videoNumber = (iframe.getAttribute('vnum') ? Number(iframe.getAttribute('vnum')) : 0);
+							  console.log(videoNumber);
+							  var link = data.items[videoNumber].link;
+							  id = link.substr(link.indexOf("=") + 1);
+							  iframe.setAttribute("src", "https://youtube.com/embed/" + id + "?controls=1&autoplay=1");
+							}
+						  );
+						}
+						var iframes = document.getElementsByClassName('embed-responsive-item');
+						for (var i = 0, len = iframes.length; i < len; i++) {
+						  loadVideo(iframes[i]);
+						}
+					</script>
+					
+				</div>
+  				
+    		</videos>
+
+  	</section>
+
+  </body>
+  <footer>
+  	<div class="col-sm-6 col-md-3 item">
+  		<h3>NAVIGATION</h3>
+  		<ul>
+  			<li><a onclick="window.scrollBy(0, -3000);" style="cursor: pointer;">Home</a></li>
+  			<li><a href="ms.html">Submit</a></li>
+  		</ul>
+  	</div>
+  	<p></p>
+  	<div class="col item social">
+  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  		<a href="https://www.twitch.tv/itmediakovs"><i class="fa fa-twitch"></i></a>
+  		<a href="https://www.instagram.com/itmediakovs/"><i class="fa fa-instagram"></i></a>
+  		<a href="https://twitter.com/itmediakovs"><i class="fa fa-twitter"></i></a>
+  	</div>
+  	<small>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Miszta</small>
+</footer>
+</html>
