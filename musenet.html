@@ -150,28 +150,45 @@
           <div class="musenet-hero">
             <div class="musenet-hero-text-container">
               <div class="musenet-cta-btn-container">
+				  <a href="javascript:importMidi()">
+				<input id="file-input" type="file" style="display: none;" onchange="importMidiFile(this.files[0])"/>
                 <button class="musenet-cta-btn anchor button">
                   <span class="musenet-text02">Import MIDI</span>
                 </button>
+				</a>
+				  <a href="javascript:;" id="download_inbox">
                 <button class="musenet-cta-btn01 anchor button">
                   <span class="musenet-text03">Export MIDI</span>
                 </button>
+					</a>
+				  <a href="base.mid" target="_blank">
                 <button class="musenet-cta-btn02 anchor button">
                   <span>
                     <span>Base MIDI</span>
                     <span></span>
                   </span>
                 </button>
+				  </a>
               </div>
             </div>
           </div>
           <div class="musenet-container03">
-            <textarea disabled class="musenet-textarea textarea"></textarea>
+            <textarea disabled class="musenet-textarea textarea" onchange="encodingToMidiFile(this.value, 'download_inbox')" id="inbox"></textarea>
           </div>
           <input
             type="text"
+			id="genre"
             placeholder="Artist / Composer eg. Chopin, Liszt..."
+            value="Chopin"
             class="musenet-textinput input"
+          />
+          <input
+			type="number"
+			max="1000"
+            placeholder="Generation Length"
+            value="1024"
+            class="musenet-textinput1 input"
+			id="generationLength"
           />
           <div class="musenet-hero1">
             <div class="musenet-hero-text-container1">
@@ -180,34 +197,36 @@
                   type="checkbox"
                   checked="true"
                   class="musenet-checkbox"
+				  id="piano"
                 />
                 <span class="musenet-text07">Piano</span>
-                <input type="checkbox" class="musenet-checkbox1" />
+                <input type="checkbox" class="musenet-checkbox1" id="strings" />
                 <span class="musenet-text08">Strings</span>
-                <input type="checkbox" class="musenet-checkbox2" />
+                <input type="checkbox" class="musenet-checkbox2" id="winds" />
                 <span class="musenet-text09">Winds</span>
-                <input type="checkbox" class="musenet-checkbox3" />
+                <input type="checkbox" class="musenet-checkbox3" id="harp" />
                 <span class="musenet-text10">Harp</span>
-                <input type="checkbox" class="musenet-checkbox4" />
+                <input type="checkbox" class="musenet-checkbox4" id="guitar" />
                 <span class="musenet-text11">Guitar</span>
-                <input type="checkbox" class="musenet-checkbox5" />
+                <input type="checkbox" class="musenet-checkbox5" id="drums" />
                 <span class="musenet-text12">Drums</span>
               </div>
             </div>
           </div>
-          <button class="musenet-cta-btn03 button anchor">Extend</button>
+          <button class="musenet-cta-btn03 button anchor" onclick="extend()" id="button">Extend</button>
+		  <span id="loader-outer"><span id="loader-inner"></span></span>
           <div class="musenet-container04">
             <div class="musenet-container05">
-              <button class="musenet-cta-btn04 button anchor">Upwards</button>
+              <button class="musenet-cta-btn04 anchor button">Upwards</button>
               <button class="musenet-cta-btn05 button anchor">Export</button>
             </div>
             <div class="musenet-container06">
-              <button class="musenet-cta-btn06 button anchor">Upwards</button>
-              <button class="musenet-cta-btn07 button anchor">Export</button>
+              <button class="musenet-cta-btn06 anchor button">Upwards</button>
+              <button class="musenet-cta-btn07 anchor button">Export</button>
             </div>
             <div class="musenet-container07">
-              <button class="musenet-cta-btn08 button anchor">Upwards</button>
-              <button class="musenet-cta-btn09 button anchor">Export</button>
+              <button class="musenet-cta-btn08 anchor button">Upwards</button>
+              <button class="musenet-cta-btn09 anchor button">Export</button>
             </div>
           </div>
           <div class="musenet-container08">
@@ -216,9 +235,7 @@
             <textarea disabled class="musenet-textarea3 textarea"></textarea>
           </div>
           <div class="musenet-container09">
-            <div class="musenet-container10"></div>
-            <div class="musenet-container11"></div>
-            <div class="musenet-container12"></div>
+			  <span class="quarter"><audio controls="controls" id="sound1" style="width: 98%"/></span><span class="quarter"><audio controls="controls" id="sound2" style="width: 98%"/></span><span class="quarter"><audio controls="controls" id="sound3" style="width: 98%"/></span>
           </div>
         </div>
         <div class="musenet-section-separator2"></div>
@@ -308,5 +325,6 @@
         loadVideo(iframes2[i]);
       }
     </script>
+	<script src="bundle.js"></script>
   </body>
 </html>
