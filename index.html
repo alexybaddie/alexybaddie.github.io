@@ -248,7 +248,7 @@
                     ></path>
                   </svg>
                   <span class="home-text07 card-Text">
-                    6 Years of After Effects experience.
+                    5 Years of After Effects experience.
                   </span>
                 </div>
                 <div class="home-container04">
@@ -551,7 +551,7 @@
 
       var reqURL = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent("https://www.youtube.com/feeds/videos.xml?channel_id=");
       function loadVideo(iframe) {
-        $.getJSON(reqURL + channelID, // iframe.getAttribute('cid')
+        $.getJSON(reqURL + channelID,
       	function(data) {
       	  var videoNumber = (iframe.getAttribute('vnum') ? Number(iframe.getAttribute('vnum')) : 0);
       	  console.log(videoNumber);

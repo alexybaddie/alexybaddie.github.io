@@ -65,7 +65,7 @@
   width: 33px;
   align-self: flex-start;
   object-fit: cover;
-  margin-right: var(--dl-space-space-doubleunit);
+  margin-right: var(--dl-space-space-fourunits);
   border-radius: 50%;
 }
 .home-navlink {
