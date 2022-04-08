@@ -128,8 +128,10 @@
             <div class="home-card">
               <div class="home-icon-container">
                 <iframe
-                  src="https://www.youtube.com/embed/DeQkMK5LME4"
                   class="home-iframe"
+				  vnum="0" 
+				  frameborder="0" 
+				  allowfullscreen
                 ></iframe>
               </div>
               <div class="home-content-container">
@@ -139,8 +141,10 @@
             <div class="home-card1">
               <div class="home-icon-container1">
                 <iframe
-                  src="https://www.youtube.com/embed/DeQkMK5LME4"
                   class="home-iframe1"
+				  vnum="1" 
+				  frameborder="0" 
+				  allowfullscreen
                 ></iframe>
               </div>
               <div class="home-content-container1">
@@ -150,10 +154,37 @@
             <div class="home-card2">
               <div class="home-icon-container2">
                 <iframe
-                  src="https://www.youtube.com/embed/DeQkMK5LME4"
                   class="home-iframe2"
+				  vnum="2" 
+				  frameborder="0" 
+				  allowfullscreen
                 ></iframe>
               </div>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+					<script>
+						var channelID = "UCTZeK5rWs3wDUQ7DxnpCcYw";
+						
+						var reqURL = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent("https://www.youtube.com/feeds/videos.xml?channel_id=");
+						function loadVideo(iframe) {
+						  $.getJSON(reqURL + channelID, // iframe.getAttribute('cid')
+							function(data) {
+							  var videoNumber = (iframe.getAttribute('vnum') ? Number(iframe.getAttribute('vnum')) : 0);
+							  console.log(videoNumber);
+							  var link = data.items[videoNumber].link;
+							  id = link.substr(link.indexOf("=") + 1);
+							  iframe.setAttribute("src", "https://youtube.com/embed/" + id + "?controls=1&autoplay=1");
+							}
+						  );
+						}
+						var iframes = document.getElementsByClassName('home-iframe');
+						var iframes1 = document.getElementsByClassName('home-iframe1');
+						var iframes2 = document.getElementsByClassName('home-iframe2');
+						for (var i = 0, len = iframes.length; i < len; i++) {
+						  loadVideo(iframes[i]);
+						  loadVideo(iframes1[i]);
+						  loadVideo(iframes2[i]);
+						}
+					</script>
               <div class="home-content-container2">
                 <span class="home-heading4 card-Heading">
                   Third Most Recent
