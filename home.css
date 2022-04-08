@@ -55,9 +55,21 @@
 .home-link04 {
   margin-right: var(--dl-space-space-tripleunit);
 }
+.home-image1 {
+  width: 33px;
+  align-self: flex-start;
+  object-fit: cover;
+  margin-right: var(--dl-space-space-doubleunit);
+  border-radius: 50%;
+}
+.home-navlink {
+  display: contents;
+}
 .home-icon {
   width: 43px;
   height: 33px;
+  align-self: flex-start;
+  text-decoration: none;
 }
 .home-burger-menu {
   display: none;
@@ -207,7 +219,7 @@
 .home-cta-btn1:hover {
   transform: scale(1.1);
 }
-.home-image1 {
+.home-image2 {
   width: 40%;
   object-fit: cover;
 }
@@ -569,26 +581,31 @@
 .home-logo {
   width: 150px;
   object-fit: cover;
+  border-radius: 50%;
   margin-bottom: var(--dl-space-space-fourunits);
 }
 .home-logo1 {
   width: 150px;
   object-fit: cover;
+  border-radius: 50%;
   margin-bottom: var(--dl-space-space-fourunits);
 }
 .home-logo2 {
   width: 150px;
   object-fit: cover;
+  border-radius: 50%;
   margin-bottom: var(--dl-space-space-fourunits);
 }
 .home-logo3 {
   width: 150px;
   object-fit: cover;
+  border-radius: 50%;
   margin-bottom: var(--dl-space-space-fourunits);
 }
 .home-logo4 {
   width: 150px;
   object-fit: cover;
+  border-radius: 50%;
   margin-bottom: var(--dl-space-space-fourunits);
 }
 .home-pricing {
@@ -1176,7 +1193,7 @@
   flex-direction: row;
   justify-content: flex-start;
 }
-.home-image2 {
+.home-image3 {
   width: 50%;
   height: 569px;
   object-fit: cover;
@@ -1322,7 +1339,7 @@
   .home-text {
     text-align: center;
   }
-  .home-image1 {
+  .home-image2 {
     width: 100%;
   }
   .home-text03 {
@@ -1425,7 +1442,7 @@
   .home-subscribe {
     flex-direction: column;
   }
-  .home-image2 {
+  .home-image3 {
     width: 70%;
   }
   .home-container17 {
@@ -1479,7 +1496,7 @@
   .home-content-container4 {
     padding-left: 0px;
   }
-  .home-image2 {
+  .home-image3 {
     width: 100%;
   }
   .home-container17 {
