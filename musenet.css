@@ -45,15 +45,24 @@
   flex-direction: row;
 }
 .musenet-link01 {
+  font-size: 24px;
+  font-family: Open Sans;
+  font-weight: 700;
+  line-height: 1.55;
   margin-right: var(--dl-space-space-tripleunit);
+  text-transform: none;
+  text-decoration: none;
 }
 .musenet-link02 {
+  font-family: Open Sans;
   margin-right: var(--dl-space-space-tripleunit);
 }
 .musenet-link03 {
+  font-family: Open Sans;
   margin-right: var(--dl-space-space-tripleunit);
 }
 .musenet-link04 {
+  font-family: Open Sans;
   margin-right: var(--dl-space-space-tripleunit);
 }
 .musenet-icon {
@@ -68,9 +77,6 @@
   object-fit: cover;
   margin-right: var(--dl-space-space-fourunits);
   border-radius: 50%;
-}
-.musenet-navlink {
-  display: contents;
 }
 .musenet-icon02 {
   width: 33px;
