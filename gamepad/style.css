@@ -133,11 +133,13 @@ background-position: 0 -70px;
     left: 3px;
     top: 5px;
     opacity: 1;
+	transform: translate3d(5.7px, 3px, 0px);
 }
  .ds4 .start.pressed {
     left: -3px;
     top: 5px;
     opacity: 1;
+	transform: translate3d(-6.5px, 3px, 0px);
 }
 
 .ds4 .back {
@@ -148,7 +150,7 @@ background-position: 0 -70px;
 .ds4 .start {
     float: right;
     /* width: 28px; */
-    background-position: 28px 0;
+ /*   background-position: 28px 0; */
 }
 
 .ds4 .abxy {
