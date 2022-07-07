@@ -1061,6 +1061,7 @@ strong {
 
 .ds4 .trigger {
     width: 99px;
+	transform: scale(1.025);
     height: 100%;
     background: url(ps4-assets/triggers.svgz);
     opacity: 0;
@@ -1106,11 +1107,11 @@ strong {
 }
 
 .ds4 .touchpad {
-    width: 262px;
-    height: 151px;
+    width: 281px;
+    height: 150px;
     position: absolute;
-    left: 272px;
-    top: 122px;
+    left: 262.5px;
+    top: 120px;
 }
 
 .ds4 .touchpad.pressed {
@@ -1187,13 +1188,14 @@ background-position: 0 -70px;
     width: 170px;
     height: 171px;
     top: 159px;
-    left: 567px;
+    left: 566.5px;
 }
 
 .ds4 .button {
     position: absolute;
     width: 55px;
     height: 55px;
+	transform: scale(1.025);
     background: url(ps4-assets/face.svgz);
 }
 
