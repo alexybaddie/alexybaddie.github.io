@@ -123,15 +123,20 @@ background-position: 0 -70px;
 }
 
 .ds4 .back, .ds4 .start {
-    background: url(ps4-assets/start.svg);
+    background: url(ps4-assets/start.svg) center no-repeat;
     width: 15px;
     height: 25px;
     opacity: 0;
 }
 
-.ds4 .back.pressed, .ds4 .start.pressed {
-    /* background-position-y: -21px; */
-    /* margin-top: 2px; */
+.ds4 .back.pressed{
+    left: 3px;
+    top: 5px;
+    opacity: 1;
+}
+ .ds4 .start.pressed {
+    left: -3px;
+    top: 5px;
     opacity: 1;
 }
 
