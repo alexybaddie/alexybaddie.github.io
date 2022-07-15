@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body><center>
+    <div class="multiple-color-module">
+
+      <div class="color-amount" style="width:410px;">
+        <center>How many colors do you want:
+        <select>
+          <option value="2">2 Colors</option>
+          <option value="3">3 Colors</option>
+        </select></center>
+      </div>
+
+      <div class="importmidicolor">
+    <!--    <form action="/action_page.php"> -->
+        <input type="file" id="myFile" name="filename">
+        <button onclick="move()" type="submit">Submit</button>
+
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Auto width -->
+        <button class="btn"><i class="fa fa-download"></i> Download</button>
+        <!--  </form> -->
+      <!--  <text>Success!</text> -->
+      </div>
+
+      <!-- Surround the select box within a "custom-select" DIV element.
+      Remember to set the width: -->
+
+      <div id="myProgress">
+        <div id="myBar"></div>
+      </div>
+      <style>
+        #myProgress {
+          width: 410px;
+          background-color: lightgrey;
+        }
+
+        #myBar {
+          width: 0%;
+          height: 15px;
+          background-color: #FF8899;
+        }
+      </style>
+      <script>
+        var i = 0;
+        function move() {
+          if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("myBar");
+            var width = 1;
+            var id = setInterval(frame, 10);
+            function frame() {
+              if (width >= 100) {
+                clearInterval(id);
+                i = 0;
+              } else {
+                width++;
+                elem.style.width = width + "%";
+              }
+            }
+          }
+        }
+      </script>
+    </div>
+  </center></body>
+</html>
