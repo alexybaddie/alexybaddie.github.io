@@ -26,7 +26,7 @@
     width: 99px;
 	transform: scale(1.025);
     height: 100%;
-    background: url(ps4-assets/triggers.svgz);
+    background: url(ps4-assets/triggers.svg);
     opacity: 0;
 }
 
@@ -42,7 +42,7 @@
 .ds4 .bumper {
     width: 99px;
     height: 23px;
-    background: url(ps4-assets/bumper.svgz) no-repeat;
+    background: url(ps4-assets/bumper.svg) no-repeat;
     opacity: 0;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .ds4 .touchpad.pressed {
-    background: url(ps4-assets/touchpad.svgz) no-repeat center;
+    background: url(ps4-assets/touchpad.svg) no-repeat center;
 }
 
 .ds4 .meta {
@@ -166,7 +166,7 @@ background-position: 0 -70px;
     width: 55px;
     height: 55px;
 	transform: scale(1.025);
-    background: url(ps4-assets/face.svgz);
+    background: url(ps4-assets/face.svg);
 }
 
 .ds4 .button.pressed {
