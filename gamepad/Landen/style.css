@@ -1,0 +1,474 @@
+/*BEGIN PS4 Controller Styling*/
+.controller.ds4 {
+    background: url(ps4-assets/base.svg);
+    height: 598px;
+    width: 806px;
+    /*    margin-left: -403px;
+        margin-top: -280px;*/
+}
+
+.ds4.disconnected {
+    background: url(ps4-assets/disconnected.svg);
+}
+
+.ds4.disconnected div {
+    display: none;
+}
+
+.ds4 .triggers {
+    width: 588px;
+    height: 90px;
+    position: absolute;
+    left: 109px;
+}
+
+.ds4 .trigger {
+    width: 99px;
+	transform: scale(1.025);
+    height: 100%;
+    background: url(ps4-assets/triggers.svg);
+    opacity: 0;
+}
+
+.ds4 .trigger.left {
+    float: left;
+}
+
+.ds4 .trigger.right {
+    float: right;
+    background-position-x: 99px;
+}
+
+.ds4 .bumper {
+    width: 99px;
+    height: 23px;
+    background: url(ps4-assets/bumper.svg) no-repeat;
+    opacity: 0;
+}
+
+.ds4 .bumpers {
+    position: absolute;
+    width: 588px;
+    height: 23px;
+    left: 109px;
+    top: 94px;
+}
+
+.ds4 .bumper.pressed {
+    opacity: 1;
+}
+
+.ds4 .bumper.left {
+    /* -webkit-transform: rotateY(180deg); */
+    /* transform: rotateY(180deg); */
+    float: left;
+}
+
+.ds4 .bumper.right {
+    float: right;
+    transform: rotateY(180deg);
+}
+
+.ds4 .touchpad {
+    width: 281px;
+    height: 150px;
+    position: absolute;
+    left: 262px;
+    top: 121px;
+}
+
+.ds4 .touchpad.pressed {
+    background: url(ps4-assets/touchpad.svg) no-repeat center;
+}
+
+.ds4 .meta {
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    left: 382px;
+    bottom: 216px;
+}
+
+.ds4 .meta.pressed {
+    background: url(ps4-assets/meta.svgz) no-repeat center;
+}
+
+/*Not needed, but I like keeping them here for posterity*/
+/*.ds4 .quadrant{
+position: absolute;
+background: url(ps4-assets/player-n.svgz);
+height: 17px;
+width: 111px;
+top: 140px;
+left: 240px;
+}
+.ds4 .p0{
+background-position: 0 -6px;
+}
+.ds4 .p1{
+background-position: 0 -28px;
+}
+.ds4 .p2{
+background-position: 0 -49px;
+}
+.ds4 .p3{
+background-position: 0 -70px;
+}*/
+.ds4 .arrows {
+    position: absolute;
+    width: 352px;
+    height: 46px;
+    top: 142px;
+    left: 227px;
+}
+
+.ds4 .back, .ds4 .start {
+    background: url(ps4-assets/start.svg) center no-repeat;
+    width: 15px;
+    height: 25px;
+    opacity: 0;
+}
+
+.ds4 .back.pressed{
+    left: 3px;
+    top: 5px;
+    opacity: 1;
+	transform: translate3d(6px, 3.5px, 0px);
+}
+ .ds4 .start.pressed {
+    left: -3px;
+    top: 5px;
+    opacity: 1;
+	transform: translate3d(-6.5px, 3.5px, 0px);
+}
+
+.ds4 .back {
+    float: left;
+    /* width: 28px; */
+}
+
+.ds4 .start {
+    float: right;
+    /* width: 28px; */
+ /*   background-position: 28px 0; */
+}
+
+.ds4 .abxy {
+    position: absolute;
+    width: 170px;
+    height: 171px;
+    top: 159px;
+    left: 566.5px;
+}
+
+.ds4 .button {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+	transform: scale(1.025);
+    background: url(ps4-assets/face.svg);
+}
+
+.ds4 .button.pressed {
+    background-position-y: 55px;
+    /* margin-top: 5px; */
+}
+
+.ds4 .a {
+    background-position: 0 0;
+    bottom: 0;
+    left: 58px;
+}
+
+.ds4 .b {
+    background-position: -57px 0;
+    top: 58px;
+    right: -1px;
+}
+
+.ds4 .x {
+    background-position: -113px 0;
+    top: 58px;
+}
+
+.ds4 .y {
+    background-position: 55px 0;
+    left: 58px;
+}
+
+.ds4 .sticks {
+    position: absolute;
+    width: 361px;
+    height: 105px;
+    top: 308px;
+    left: 228px;
+}
+
+.ds4 .stick {
+    position: absolute;
+    background: url(ps4-assets/sticks.svg);
+    height: 94px;
+    width: 94px;
+}
+
+.ds4 .stick.pressed.left {
+    background-position-x: -96px;
+}
+
+.ds4 .stick.pressed.right {
+    background-position-x: -192px;
+}
+
+.ds4 .stick.left {
+    top: 0;
+    left: 0;
+}
+
+.ds4 .stick.right {
+    top: calc(100% - 105px);
+    left: calc(100% - 105px);
+}
+
+.ds4 .dpad {
+    position: absolute;
+    width: 125px;
+    height: 126px;
+    top: 181px;
+    left: 92px;
+}
+
+.ds4 .face {
+    background: url(ps4-assets/dpad.svg);
+    position: absolute;
+}
+
+.ds4 .face.up, .ds4 .face.down {
+    width: 36px;
+    height: 52px;
+}
+
+.ds4 .face.left, .ds4 .face.right {
+    width: 52px;
+    height: 36px;
+}
+
+.ds4 .face.up {
+    left: 44px;
+    top: 0;
+    background-position: -37px 0px;
+}
+
+.ds4 .face.down {
+    left: 44px;
+    bottom: 0;
+    background-position: 0px 0;
+}
+
+.ds4 .face.left {
+    top: 45px;
+    left: 0;
+    background-position: 104px 0;
+}
+
+.ds4 .face.right {
+    top: 45px;
+    right: 0px;
+    background-position: 52px 0;
+}
+
+.ds4 .face.pressed {
+    /* margin-top: 5px; */
+    background-position-y: 52px;
+}
+
+.ds4.half {
+    margin-top: -300px;
+}
+
+/*END PS4 Controller Styling*/
+
+/*Navbar Elements & their inner contents*/
+.navbar {
+    height: 50px;
+    background: cornflowerblue;
+    border-bottom: 1px solid #5570b8;
+    color: white;
+    width: 100%;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    text-align: center;
+}
+
+.nocon {
+    background: indianred;
+    border-bottom: none;
+    border-top: 1px solid #FF7474;
+    bottom: 0;
+    top: auto;
+}
+
+.nocon.visible, .pselect.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.nocon ul {
+    float: left;
+    display: inline-block;
+}
+
+.navbar .content {
+    font-size: 25px;
+    width: 960px;
+    display: flex;
+    margin: 0 auto;
+    line-height: 50px;
+    justify-content: space-between;
+}
+
+/*.navbar .content .left {
+    float: left;
+}
+
+.navbar .content .right {
+    float: right;
+}*/
+
+.right a.button {
+    top: 0;
+    background: #FF9900;
+    box-sizing: border-box;
+    padding: 5px;
+    display: inline-block;
+    line-height: normal;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.74);
+    border-radius: 3px;
+    margin: 4px;
+}
+
+.navbar .content .center {
+    display: flex;
+}
+
+.pselect, .nocon {
+    visibility: hidden;
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.tooltip {
+    display: inline;
+    position: relative;
+}
+
+.tooltip:after {
+    bottom: 13px;
+    color: rgb(255, 255, 255);
+    content: attr(data-tooltip) '\279F';
+    display: block;
+    left: -240px;
+    position: absolute;
+    text-shadow: rgb(0, 0, 0) 0px 1px 0px;
+    white-space: nowrap;
+    font-size: 0.5em;
+    text-align: right;
+    line-height: 25px;
+    animation: helptip 7s 1 forwards;
+    -webkit-animation-delay: 4s;
+    -moz-animation-delay: 4s;
+    -o-animation-delay: 4s;
+    animation-delay: 4s;
+}
+
+.box {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    font-size: 30pt;
+    font-weight: 700;
+    float: left;
+}
+
+.box a, .box label {
+    text-decoration: none;
+    display: block;
+    height: 50px;
+    width: 50px;
+}
+
+/*.skins{*/
+/*margin: 0 0 0 -4px;*/
+/*}*/
+/*.skins input{*/
+/*display: none;*/
+/*}*/
+.console {
+    padding: 9px;
+    vertical-align: top;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 50px;
+    border: none;
+    font-size: 20px;
+    width: 50px;
+    color: transparent;
+    outline: 0;
+    -webkit-filter: invert(0.97);
+    -moz-filter: invert(0.97);
+    filter: invert(0.97);
+    transition: .3s ease-out;
+    cursor: pointer;
+}
+
+.console:hover {
+    -webkit-filter: invert(0);
+    -moz-filter: invert(0);
+    filter: invert(0);
+}
+
+.console option {
+    color: black;
+    background: white;
+}
+
+.console.xbox, .console.xbox-old {
+    background: url('icons/xbx.png') no-repeat center;
+}
+
+.console.ps, .console.ds4 {
+    background: url('icons/psn.png') no-repeat center;
+}
+
+.console.nes {
+    background: url('icons/nes.png') no-repeat center;
+}
+
+.console.fpp {
+    background: url('icons/fpp.png') no-repeat center;
+}
+
+.console.fight-stick {
+    background: url('icons/fight-stick.png') no-repeat center;
+}
+
+.console.gc {
+    background: url('icons/gc.png') no-repeat center;
+}
+
+#color-picker {
+    display: inline-block;
+    width: 50px;
+    color: whitesmoke;
+    line-height: normal;
+}
+
+#color-picker i {
+    font-size: 42px;
+    transform: translateY(8%);
+}
+
+#color-picker-input {
+    transform: scale(0);
+}
