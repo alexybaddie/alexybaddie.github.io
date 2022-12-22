@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<!--
+
+
+           .d88888b.             
+         .8P"     "9bd888b.      
+        .8P     .d8P"   `"988.   
+     .8888   .d8P"    ,     98.  
+   .8P" 88   8"    .d98b.    88  
+  .8P   88   8 .d8P"   "98b. 88  
+  88    88   8P"  `"8b.    "98.  
+  88.   88   8       8"8b.    88 
+   88    "98.8       8   88   "88
+    `8b.    "98.,  .d8   88    88
+    88 "98b.   .d8P" 8   88   d8"
+    88    "98bP"    .8   88 .d8" 
+    "8b     `    .d8P"   8888"   
+     "88b.,   .d8P"     d8"      
+       "9888P98b.     .d8"       
+               "988888P"         
+
+
+  Solve Impossible Problems
+  openai.com/careers
+
+
+-->
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-71156606-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-71156606-1');
+  </script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>MuseNet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" type="text/css" href="https://openai.com/assets/styles/all.css?v=b4ca92bb18" />
+  
+  <script type="text/javascript">document.documentElement.className = 'js';</script>
+  <link rel="icon" type="image/svg+xml" href="https://openai.com/assets/images/favicon.svg?v=b4ca92bb18">
+  <link rel="mask-icon" href="https://openai.com/assets/images/mask-icon.svg?v=b4ca92bb18" color="#000000">
+  <meta name="description" content="We’ve created Musenet, a deep neural network that can generate 4-minute musical compositions with 10 different instruments and can combine styles from country to Mozart to the Beatles." />
+    <link rel="icon" href="https://openai.com/content/images/size/w256h256/2020/09/icon-1.png" type="image/png" />
+    <link rel="canonical" href="https://openai.com/blog/musenet/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="OpenAI" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="MuseNet" />
+    <meta property="og:description" content="We’ve created Musenet, a deep neural network that can generate 4-minute musical compositions with 10 different instruments and can combine styles from country to Mozart to the Beatles." />
+    <meta property="og:url" content="https://openai.com/blog/musenet/" />
+    <meta property="og:image" content="https://openai.com/content/images/2019/04/Screen-Shot-2019-04-25-at-7.37.40-AM-1.png" />
+    <meta property="article:published_time" content="2019-04-25T16:29:16.000Z" />
+    <meta property="article:modified_time" content="2021-06-21T21:56:58.000Z" />
+    <meta property="article:tag" content="Research" />
+    <meta property="article:tag" content="Milestones" />
+    
+    <meta property="article:publisher" content="https://www.facebook.com/openai.research" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MuseNet" />
+    <meta name="twitter:description" content="We’ve created Musenet, a deep neural network that can generate 4-minute musical compositions with 10 different instruments and can combine styles from country to Mozart to the Beatles." />
+    <meta name="twitter:url" content="https://openai.com/blog/musenet/" />
+    <meta name="twitter:image" content="https://openai.com/content/images/2019/04/Screen-Shot-2019-04-25-at-7.37.40-AM.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Christine McLeavey Payne" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Research, Milestones" />
+    <meta name="twitter:site" content="@openai" />
+    <meta property="og:image:width" content="1030" />
+    <meta property="og:image:height" content="1302" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "OpenAI",
+        "url": "https://openai.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://openai.com/content/images/2022/05/openai-avatar.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Christine McLeavey Payne",
+        "url": "https://openai.com/blog/authors/christine/",
+        "sameAs": []
+    },
+    "headline": "MuseNet",
+    "url": "https://openai.com/blog/musenet/",
+    "datePublished": "2019-04-25T16:29:16.000Z",
+    "dateModified": "2021-06-21T21:56:58.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://openai.com/content/images/2019/04/2x-no-mark.jpg",
+        "width": 1276,
+        "height": 1696
+    },
+    "keywords": "Research, Milestones",
+    "description": "We’ve created MuseNet, a deep neural network that can generate 4-minute musical compositions with 10 different instruments, and can combine styles from country to Mozart to the Beatles.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://openai.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.26" />
+    <link rel="alternate" type="application/rss+xml" title="OpenAI" href="https://openai.com/blog/rss/" />
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="23f7e2ddba37b787ce1ea90e77" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://openaidev.ghost.io/" crossorigin="anonymous"></script>
+    <script defer src="/public/cards.min.js?v=b4ca92bb18"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=b4ca92bb18">
+    <style>
+  h2#samples  {
+    margin-top: calc(var(--v) * 1);
+  }
+  .Dropdown-placeholder {
+    background-image: none !important; /* override */
+  }
+  #fa2 .disclaimer {
+    display: none;
+  }
+  /* hotfix for color name change */
+  .bg-dull-black-1 {
+    background-color: var(--light-black);
+  }
+</style><style>:root {--ghost-accent-color: #15171A;}</style>
+</head>
+<body>
+  
+<article class="post" id="post-musenet">
+  
+  <header
+    class="post-header post-header--cover bg-light-warm-gray bg-cover"
+    style="background-image:url(https://cdn.openai.com/research-covers/musenet/gradient.jpg)"
+  >
+  <nav class="nav" data-url="/blog/musenet/">
+  <div class="bg-black color-white pt-0.2 pb-1/6 text-center d-block no-style">
+    <div class="container d-flex flex-row justify-content-center small-copy">
+      <span class="d-none d-md-block">Introducing ChatGPT research release</span>
+
+      <div class="flex ml-md-0.5">
+        <a href="https://chat.openai.com" class="icon-external font-bold right">Try<span class="d-md-none">&nbsp;ChatGPT</span></a>
+        <a href="/blog/chatgpt/" class="icon-next font-bold right ml-0.25">Learn more</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="nav-row row align-items-start align-items-sm-center">
+      <div class="col-6 col-sm nav-symbol-wrap">
+        <a href="/" class="nav-symbol"><!-- contact comms-team@openai.com for official logo asset; below is hinted version --><svg id="openai-horizontal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 29.53"><path d="M40.7,6.98s-.05,0-.07,0c-.02,0-.05,0-.07,0-4.67,0-7.58,2.91-7.58,7.6v2.53c0,4.69,2.9,7.6,7.58,7.6,.02,0,.05,0,.07,0,.02,0,.05,0,.07,0,4.67,0,7.58-2.91,7.58-7.6v-2.53c0-4.69-2.91-7.6-7.58-7.6Zm4.31,10.31c0,3.08-1.6,4.86-4.38,4.89-2.78-.03-4.38-1.81-4.38-4.89v-2.88c0-3.08,1.6-4.86,4.38-4.89,2.78,.03,4.38,1.81,4.38,4.89v2.88Zm40.57-5.79s-.06,0-.09,0c-.02,0-.03,0-.05,0-1.77,0-3.03,.6-3.65,1.75l-.19,.35v-1.8h-3.02v12.56h3.17v-7.48c0-1.76,.95-2.77,2.59-2.8,1.57,.03,2.47,1.02,2.47,2.73v7.55h3.17v-8.09c0-2.99-1.64-4.77-4.39-4.77Zm34.42-1.77v-2.4h-10.46v2.4h3.67v12.22h-3.67v2.4h10.46v-2.4h-3.67V9.73h3.67Zm-18.75-2.4h0s-3.28,0-3.28,0l-6.1,17.04h3.43l1.17-3.65h6.66v.04s1.17,3.62,1.17,3.62h3.43l-6.11-17.04h-.36Zm-4.03,10.98l2.57-8.05,2.55,8.05h-5.12Zm-39.45-6.81s-.05,0-.07,0c-.03,0-.05,0-.07,0-1.59,0-2.96,.66-3.68,1.76l-.18,.28v-1.74h-3.02V28.69h3.17v-5.9l.18,.27c.68,1.01,2.01,1.61,3.56,1.61,.03,0,.05,0,.08,0,.02,0,.04,0,.07,0,2.61,0,5.24-1.7,5.24-5.51v-2.14c0-2.74-1.62-5.51-5.26-5.51Zm2.1,7.5c0,2-1.15,3.24-3.01,3.28-1.73-.03-2.94-1.35-2.94-3.23v-1.89c0-1.9,1.22-3.24,2.97-3.28,1.84,.03,2.98,1.28,2.98,3.28v1.84Zm11.05-7.5h0c-.06,0-.12,.01-.18,.01-.06,0-.12-.01-.18-.01h0c-3.57,0-5.78,2.23-5.78,5.81v1.76c0,3.45,2.24,5.59,5.83,5.59,.08,0,.15,0,.22-.01,.05,0,.09,.01,.14,.01,2.41,0,4.09-.88,5.16-2.7l-2.13-1.23c-.71,1.05-1.66,1.84-3.02,1.84-1.82,0-2.91-1.12-2.91-3.01v-.5h8.44v-2.08c0-3.34-2.19-5.49-5.59-5.49Zm-2.86,5.54v-.3c0-2,.95-3.12,2.68-3.2,1.66,.08,2.66,1.18,2.66,2.99v.5s-5.34,0-5.34,0Z"></path><path d="M27.21,12.08c.67-2.01,.44-4.21-.63-6.04-1.61-2.8-4.85-4.24-8.01-3.57C17.16,.89,15.14-.01,13.02,0c-3.23,0-6.1,2.08-7.1,5.15-2.08,.43-3.87,1.73-4.92,3.57-1.62,2.8-1.25,6.32,.92,8.72-.67,2.01-.44,4.21,.63,6.03,1.61,2.81,4.85,4.25,8.02,3.58,1.4,1.58,3.42,2.49,5.54,2.48,3.23,0,6.1-2.08,7.1-5.15,2.08-.43,3.87-1.73,4.91-3.57,1.63-2.8,1.26-6.32-.91-8.72Zm-2.3-5.07c.64,1.12,.88,2.43,.66,3.7-.04-.03-.12-.07-.17-.1l-5.88-3.4c-.3-.17-.67-.17-.97,0l-6.89,3.98v-2.92l5.69-3.29c2.65-1.53,6.03-.62,7.56,2.03Zm-13.25,6.07l2.9-1.68,2.9,1.68v3.35l-2.9,1.68-2.9-1.68v-3.35ZM13.01,1.93c1.3,0,2.55,.45,3.55,1.28-.04,.02-.12,.07-.18,.1l-5.88,3.39c-.3,.17-.48,.49-.48,.84v7.96l-2.53-1.46V7.46c0-3.06,2.47-5.53,5.53-5.54ZM2.68,9.69h0c.65-1.12,1.66-1.98,2.88-2.43v6.99c0,.35,.18,.66,.48,.84l6.88,3.97-2.54,1.47-5.68-3.28c-2.64-1.53-3.55-4.91-2.02-7.56Zm1.55,12.83h0c-.65-1.11-.88-2.43-.66-3.7,.04,.03,.12,.07,.17,.1l5.88,3.4c.3,.17,.67,.17,.97,0l6.88-3.98v2.92l-5.69,3.28c-2.65,1.52-6.03,.62-7.56-2.02Zm11.89,5.08c-1.29,0-2.55-.45-3.54-1.28,.04-.02,.13-.07,.18-.1l5.88-3.39c.3-.17,.49-.49,.48-.84v-7.95l2.53,1.46v6.57c0,3.06-2.48,5.54-5.53,5.54Zm10.34-7.76c-.65,1.12-1.67,1.98-2.88,2.42v-6.99c0-.35-.18-.67-.48-.84h0l-6.89-3.98,2.53-1.46,5.69,3.28c2.65,1.53,3.55,4.91,2.02,7.56Z"></path></svg></a>
+      </div>
+      <div class="col-6 col-sm-auto small-caps">
+        <ul class="d-none d-sm-flex flex-row align-items-center justify-content-between">
+                        
+            <li class="ml-sm-1.5 ml-md-1.75" style="margin-top:0.5px"><a class="nav-link " href="/api/" data-slug="api">API</a></li>
+            
+            <li class="ml-sm-1.5 ml-md-1.75" style="margin-top:0.5px"><a class="nav-link " href="/research/" data-slug="research">Research</a></li>
+            
+            <li class="ml-sm-1.5 ml-md-1.75" style="margin-top:0.5px"><a class="nav-link active-parent" href="/blog/" data-slug="blog">Blog</a></li>
+            
+            <li class="ml-sm-1.5 ml-md-1.75" style="margin-top:0.5px"><a class="nav-link " href="/about/" data-slug="about">About</a></li>
+        </ul>
+        <ul class="d-sm-none" style="margin-top:-1px">
+                        
+            <li class="mb-0.25" style="margin-top:0.5px"><a class="nav-link " href="/api/" data-slug="api">API</a></li>
+            
+            <li class="mb-0.25" style="margin-top:0.5px"><a class="nav-link " href="/research/" data-slug="research">Research</a></li>
+            
+            <li class="mb-0.25" style="margin-top:0.5px"><a class="nav-link active-parent" href="/blog/" data-slug="blog">Blog</a></li>
+            
+            <li class="mb-0.25" style="margin-top:0.5px"><a class="nav-link " href="/about/" data-slug="about">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+  
+  <div class="container mt-4 mb-2 pb-1">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-9 col-sm-8 col-md-5 col-xl-4 order-md-1 mb-1.5 mb-md-1 position-relative">
+            <div class="sticky sticky-top mt-ngutter pt-gutter">
+              <figure class="release-cover mb-0 position-relative bg-fg-2 rounded-small overflow-hidden shadowed-xheavy" style="padding-bottom:132.915360502%">
+    <img
+      class="position-absolute trbl-0 js-lazy"
+      data-src="https://cdn.openai.com/research-covers/musenet/2x-no-mark.jpg"
+      alt="MuseNet">
+</figure>
+
+            </div>
+          </div>
+
+          <div class="col-12 col-md">
+            <div class="h-100 w-md-11/12 w-xl-10/12 max-width-xnarrow">
+              <div class="h-100 d-flex flex-column justify-content-between">
+                  <div>
+                    <h1 class="
+   balance-text
+  
+  
+  
+  
+  
+  
+  
+   mb-0.75
+  ">MuseNet</h1>                      <div class="post-excerpt content no-col js-excerpt-container js-widow">
+  </div>
+                  </div>
+                    <div class="post-header-date small-copy color-fg-50 color-fg mb-1 mb-md-10/12">
+    <time datetime="2019-04-25">April 25, 2019</time>
+    <div class="reading-time">6 minute read</div>
+  </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</header>
+
+  <section class="container">
+  <div class="row">
+    <section class="content">
+      
+      <div class="js-post-content">
+        <!--kg-card-begin: markdown--><div class="js-excerpt">
+<p>We've created MuseNet, a deep neural network that can generate 4-minute musical compositions with 10 different instruments, and can combine styles from country to Mozart to the Beatles. MuseNet was not explicitly programmed with our understanding of music, but instead discovered patterns of harmony, rhythm, and style by learning to predict the next token in hundreds of thousands of MIDI files. MuseNet uses the same general-purpose unsupervised technology as <a href="https://openai.com/blog/better-language-models/">GPT-2</a>, a large-scale <a href="https://arxiv.org/abs/1706.03762">transformer</a> model trained to predict the next token in a sequence, whether audio or text.</p>
+</div>
+<h2 id="samples">Samples</h2>
+<section>
+<!-- Prompted with first 10 tokens of Chopin Op. 10, No. 9 -->
+<hr class="my-0.5">
+<iframe class="mb-0" width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/609806943&color=%23ff5500&inverse=false&auto_play=false&show_user=false"></iframe>
+<hr class="my-0.5">
+<!-- Prompted with "Jazz piano-bass-drums" -->
+<iframe class="mb-0" width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/608630034&color=%23ff5500&inverse=false&auto_play=false&show_user=false"></iframe>
+<hr class="my-0.5">
+<!-- Genre: Bluegrass -->
+<iframe class="mb-0" width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/610595778&color=%23ff5500&inverse=false&auto_play=false&show_user=false"></iframe>
+<hr class="my-0.5">    
+<!-- Prompted with first 10 tokens of Rachmaninoff -->
+<iframe class="mb-0" width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/609829641&color=%23ff5500&inverse=false&auto_play=false&show_user=false"></iframe>
+<hr class="my-0.5">
+</section>
+<p>Since MuseNet knows many different styles, we can blend generations in novel ways.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> Here the model is given the first 6 notes of a Chopin Nocturne, but is asked to generate a piece in a pop style with piano, drums, bass, and guitar. The model manages to blend the two styles convincingly, with the full band joining in at around the 30 second mark:</p>
+<section>
+<hr class="my-0.5">
+<!-- Prompted with "Pop" and first 12 tokens of Chopin Op. 27, No. 2 -->
+<iframe class="mb-0" width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/608629956&color=%23ff5500&inverse=false&auto_play=false&show_user=false"></iframe>
+<hr class="my-0.5">
+</section>
+<h2 id="try">Try MuseNet</h2>
+<p>We’re excited to see how musicians and non-musicians alike will use MuseNet to create new compositions!<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<p>In <em>simple mode</em> (shown by default), you'll hear random uncurated samples that we've pre-generated. Choose a composer or style, an optional start of a famous piece, and start generating. This lets you explore the variety of musical styles the model can create. In <em>advanced mode</em> you can interact with the model directly. The completions will take longer, but you'll be creating an entirely new piece.</p>
+<div class="full mt-2.5 mb-1.5">
+<div id="demo"></div>
+</div>
+<p><a id="caveats"></a><br>
+Some of MuseNet's limitations include:</p>
+<ul>
+<li>The instruments you ask for are strong suggestions, not requirements. MuseNet generates each note by calculating the probabilities across all possible notes and instruments. The model shifts to make your instrument choices more likely, but there's always a chance it will choose something else.</li>
+<li>MuseNet has a more difficult time with odd pairings of styles and instruments (such as Chopin with bass and drums). Generations will be more natural if you pick instruments closest to the composer or band’s usual style.</li>
+</ul>
+<h2 id="composerandinstrumentationtokens">Composer and Instrumentation Tokens</h2>
+<p>We created composer and instrumentation tokens to give more control over the kinds of samples MuseNet generates. During training time, these composer and instrumentation tokens were prepended to each sample, so the model would learn to use this information in making note predictions. At generation time, we can then condition the model to create samples in a chosen style by starting with a prompt such as a Rachmaninoff piano start:</p>
+<section>
+<hr class="my-0.5">
+<!-- Rachmaninoff -->
+<iframe class="mb-0" width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/608629944&color=%23ff5500&inverse=false&auto_play=false&show_user=false"></iframe>
+<hr class="my-0.5">
+</section>
+<p>Or prompted with the band Journey, with piano, bass, guitar, and drums:</p>
+<section>
+<hr class="my-0.5">
+<!-- Journey -->
+<iframe class="mb-0" width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/608630013&color=%23ff5500&inverse=false&auto_play=false&show_user=false"></iframe>
+<hr class="my-0.5">
+</section>
+<p>We can visualize the embeddings from MuseNet to gain insight into what the model has learned. Here we use <a href="https://lvdmaaten.github.io/tsne/">t-SNE</a> to create a 2-D map of the cosine similarity of various musical composer and style embeddings.</p>
+<div class="full pt-1 pt-md-1.5 pb-1 pb-lg-2 my-2.5 bg-cover" style="background-image: url(https://cdn.openai.com/research-covers/musenet/gradient.jpg)">
+  <div class="container">
+    <div class="color-fg-50 small-copy" style="width: 40%">
+      Hover over a specific composer or style to see how it relates to&nbsp;others.
+    </div>
+    <div id="composer-embeddings-css"></div>
+    <div class="mx-auto" style="max-width:1080px">
+      <div id="composer-embeddings"></div>
+    </div>
+  </div>
+</div>
+<h2 id="longtermstructure">Long-Term Structure</h2>
+<p>MuseNet uses the recompute and optimized kernels of <a href="https://openai.com/blog/sparse-transformer/">Sparse Transformer</a> to train a 72-layer network with 24 attention heads—with full attention over a context of 4096 tokens. This long context may be one reason why it is able to remember long-term structure in a piece, like in the following sample imitating Chopin:</p>
+<section>
+<hr class="my-0.5">
+<!-- Prompted with 48 tokens of Chopin (returns to initial theme at end) -->
+<iframe class="mb-0" width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/609807969&color=%23ff5500&inverse=false&auto_play=false&show_user=false"></iframe>
+<hr class="my-0.5">
+</section>
+<p>It can also create musical melodic structures, as in this sample imitating Mozart:</p>
+<section>
+<!-- Prompted with first 10 tokens of Mozart K.545 -->
+<hr class="my-0.5">
+<iframe class="mb-0" width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/608629917&color=%23ff5500&inverse=false&auto_play=false&show_user=false"></iframe>
+<hr class="my-0.5">
+</section>
+<p>Music generation is a useful domain for testing the Sparse Transformer as it sits on a middle ground between text and images. It has the fluid token structure of text (in images you can look back N tokens and find the row above, whereas in music there’s not a fixed number for looking back to the previous measure). Yet we can easily hear whether the model is capturing long term structure on the order of hundreds to thousands of tokens. It’s much more obvious if a music model messes up structure by changing the rhythm, in a way that it’s less clear if a text model goes on a brief tangent.</p>
+<h2 id="dataset">Dataset</h2>
+<p>We collected training data for MuseNet from many different sources. <a href="https://www.classicalarchives.com/">ClassicalArchives</a> and <a href="https://bitmidi.com/">BitMidi</a> donated their large collections of MIDI files for this project, and we also found several collections online, including jazz, pop, African, Indian, and Arabic styles. Additionally, we used the <a href="https://arxiv.org/abs/1810.12247">MAESTRO dataset</a>.</p>
+<p>The transformer is trained on sequential data: given a set of notes, we ask it to predict the upcoming note. We experimented with several different ways to encode the MIDI files into tokens suitable for this task. First, a chordwise approach that considered every combination of notes sounding at one time as an individual &quot;chord&quot;, and assigned a token to each chord. Second, we tried condensing the musical patterns by only focusing on the starts of notes, and tried further compressing that using a byte pair encoding scheme.</p>
+<p>We also tried two different methods of marking the passage of time: either tokens that were scaled according to the piece’s tempo (so that the tokens represented a musical beat or fraction of a beat), or tokens that marked absolute time in seconds. We landed on an encoding that combines expressivity with conciseness: combining the pitch, volume, and instrument information into a single token.</p>
+<pre style="white-space: unset" class="language-python"><code class="language-python">bach piano_strings start tempo90 piano:v72:G1 piano:v72:G2 piano:v72:B4 piano:v72:D4 violin:v80:G4 piano:v72:G4 piano:v72:B5 piano:v72:D5 wait:12 piano:v0:B5 wait:5 piano:v72:D5 wait:12 piano:v0:D5 wait:4 piano:v0:G1 piano:v0:G2 piano:v0:B4 piano:v0:D4 violin:v0:G4 piano:v0:G4 wait:1 piano:v72:G5 wait:12 piano:v0:G5 wait:5 piano:v72:D5 wait:12 piano:v0:D5 wait:5 piano:v72:B5 wait:12</code></pre>
+<div class="caption">Sample encoding which combines pitch, volume, and instrument.</div>
+<p>During training, we:</p>
+<ol>
+<li>Transpose the notes by raising and lowering the pitches (later in training, we reduce the amount of transposition so that generations stay within the individual instrument ranges).</li>
+<li>Augment the volumes, turning up or turning down the overall volumes of the various samples.</li>
+<li>Augment timing (when using the absolute time in seconds encoding), effectively slightly slowing or speeding up the pieces.</li>
+<li>Use <a href="https://arxiv.org/abs/1710.09412">mixup</a> on the token embedding space</li>
+</ol>
+<p>We also create an inner critic: the model is asked during training time to predict whether a given sample is truly from the dataset or if it is one of the model's own past generations. This score is used to select samples at generation time.</p>
+<h2 id="embeddings">Embeddings</h2>
+<p>We added several different kinds of embeddings to give the model more structural context. In addition to the standard positional embeddings, we added a learned embedding that tracks the passage of time in a given sample. This way, all of the notes that sound at the same time are given the same timing embedding. We then add an embedding for each note in a chord (this mimics relative attention, since it will be easier for the model to learn that note 4 needs to look back at note 3, or else at note 4 of the previous chord). Finally, we add two structural embeddings which tell the model where a given musical sample is within the larger musical piece. One embedding divides the larger piece into 128 parts, while the second encoding is a countdown from 127 to 0 as the model approaches the (end) token.</p>
+<hr>
+<p>We’re excited to hear what people create! If you create a piece you like, you can upload it to a free service like <a href="https://instaud.io/">Instaudio</a> and then tweet us the link (the MuseNet demo has a tweet button to help with this).</p>
+<p>If you’re interested in learning more about OpenAI’s music work, consider <a href="https://openai.com/jobs/">applying</a> to join our team. Please feel free to <a href="mailto:musenet@openai.com">email us</a> with suggestions for the MuseNet demo. We'd also love to hear from you if you're interested in composing with MuseNet in more depth, or if you have MIDI files you'd like to add to the training set.</p>
+<section class="mt-1.5 mb-1.25" style="overflow: hidden">
+<iframe src="https://player.twitch.tv/?parent=openai.com&autoplay=false&video=v416276005" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+</section>
+<div class="caption">MuseNet played an experimental concert on April 25th, 2019, livestreamed on OpenAI’s <a href="https://www.twitch.tv/openai">Twitch channel</a>, in which no human (including us) had heard the pieces before.</div>
+<!-- playlist -->
+<!-- <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/758984046&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe> -->
+<footer class="post-footer js-post-footer">
+<div>
+<hr>
+<div class="row">
+<div class="col">Acknowledgments</div>
+<div class="col">
+<p>Thanks to Rewon Child and Scott Gray for their work on the Sparse Transformer, and Jeff Wu and Alec Radford for their work on GPT-2.</p>
+<p>We also thank the following for feedback on drafts of this post: Greg Brockman, Ilya Sutskever, Durk Kingma, Arvind Neelakantan, Tim Salimans, Rob Laidlow, Judith Finell, Moni Simeonov, Ray Iwazumi, Sam McCandlish, Miles Brundage, Jack Clark, Jonas Schneider, Chris Olah.</p>
+</div>
+</div>
+</div>
+<div>
+<hr>
+<div class="row">
+<div class="col">Editor</div>
+<div class="col">Ashley Pilipiszyn</div>
+</div>
+</div>
+<div>
+<hr>
+<div class="row">
+<div class="col">Design & Development</div>
+<div class="col">Justin Jay Wang, Nicholas Benson, Eric Sigler</div>
+</div>
+</div>
+<div>
+<hr>
+<div class="row">
+<div class="col">Cover Artwork</div>
+<div class="col">Ben Barry</div>
+</div>
+</div>
+<div data-order="-1">
+<hr>
+<div class="row">
+<div class="col">Footnotes</div>
+<div class="col"><hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>If you're interested in other projects for creating AI generated music using transformers, we recommend checking out <a href="https://magenta.tensorflow.org/music-transformer">Magenta's piano generation work</a>. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p class="mb-0.25">For use of outputs created by MuseNet, please cite this blog post as</p>
+<pre class="mt-0 mb-0.25 text-wrap"><code>Payne, Christine. "MuseNet." <i>OpenAI</i>, 25 Apr. 2019, openai.com/blog/musenet</code></pre>
+<p class="disclaimer">Please note: We do not own the music output, but kindly ask that you not charge for it. While unlikely, we make no guarantee that the music is free from external copyright claims.</p>
+ <a href="#fnref2" class="footnote-backref">↩︎</a></li>
+</ol>
+</section>
+<!--kg-card-end: markdown-->
+      </div>
+    </section>
+  </div>
+</section>
+  <footer class="post-footer post-footer--authors container js-post-footer-authors">
+  <div data-order="0">
+    <hr>
+    <div class="row" id="authors">
+      <div class="col">Authors</div>
+      <div class="col js-post-footer-authors-list ">
+        <span class="post-author"><a class="fade" href="/blog/authors/christine/">Christine McLeavey Payne</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<footer class="post-footer post-footer--tags container js-post-footer-tags">
+  <div>
+    <hr>
+    <div class="row" id="tags">
+      <div class="col">Filed Under</div>
+      <div class="col js-post-footer-tags-list">
+        <span class="post-tag"><a class="fade" href="/blog/tags/research/">Research</a></span><span class="post-tag"><a class="fade" href="/blog/tags/milestones/">Milestones</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</article>
+  
+
+  
+
+<footer class="footer container medium-xsmall-copy line-height-1.6">
+  <a href="/" class="d-block footer-logo mb-1.75" style="margin-left:-1px"><!-- contact comms-team@openai.com for official logo asset; below is hinted version --><svg id="openai-horizontal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 29.53"><path d="M40.7,6.98s-.05,0-.07,0c-.02,0-.05,0-.07,0-4.67,0-7.58,2.91-7.58,7.6v2.53c0,4.69,2.9,7.6,7.58,7.6,.02,0,.05,0,.07,0,.02,0,.05,0,.07,0,4.67,0,7.58-2.91,7.58-7.6v-2.53c0-4.69-2.91-7.6-7.58-7.6Zm4.31,10.31c0,3.08-1.6,4.86-4.38,4.89-2.78-.03-4.38-1.81-4.38-4.89v-2.88c0-3.08,1.6-4.86,4.38-4.89,2.78,.03,4.38,1.81,4.38,4.89v2.88Zm40.57-5.79s-.06,0-.09,0c-.02,0-.03,0-.05,0-1.77,0-3.03,.6-3.65,1.75l-.19,.35v-1.8h-3.02v12.56h3.17v-7.48c0-1.76,.95-2.77,2.59-2.8,1.57,.03,2.47,1.02,2.47,2.73v7.55h3.17v-8.09c0-2.99-1.64-4.77-4.39-4.77Zm34.42-1.77v-2.4h-10.46v2.4h3.67v12.22h-3.67v2.4h10.46v-2.4h-3.67V9.73h3.67Zm-18.75-2.4h0s-3.28,0-3.28,0l-6.1,17.04h3.43l1.17-3.65h6.66v.04s1.17,3.62,1.17,3.62h3.43l-6.11-17.04h-.36Zm-4.03,10.98l2.57-8.05,2.55,8.05h-5.12Zm-39.45-6.81s-.05,0-.07,0c-.03,0-.05,0-.07,0-1.59,0-2.96,.66-3.68,1.76l-.18,.28v-1.74h-3.02V28.69h3.17v-5.9l.18,.27c.68,1.01,2.01,1.61,3.56,1.61,.03,0,.05,0,.08,0,.02,0,.04,0,.07,0,2.61,0,5.24-1.7,5.24-5.51v-2.14c0-2.74-1.62-5.51-5.26-5.51Zm2.1,7.5c0,2-1.15,3.24-3.01,3.28-1.73-.03-2.94-1.35-2.94-3.23v-1.89c0-1.9,1.22-3.24,2.97-3.28,1.84,.03,2.98,1.28,2.98,3.28v1.84Zm11.05-7.5h0c-.06,0-.12,.01-.18,.01-.06,0-.12-.01-.18-.01h0c-3.57,0-5.78,2.23-5.78,5.81v1.76c0,3.45,2.24,5.59,5.83,5.59,.08,0,.15,0,.22-.01,.05,0,.09,.01,.14,.01,2.41,0,4.09-.88,5.16-2.7l-2.13-1.23c-.71,1.05-1.66,1.84-3.02,1.84-1.82,0-2.91-1.12-2.91-3.01v-.5h8.44v-2.08c0-3.34-2.19-5.49-5.59-5.49Zm-2.86,5.54v-.3c0-2,.95-3.12,2.68-3.2,1.66,.08,2.66,1.18,2.66,2.99v.5s-5.34,0-5.34,0Z"></path><path d="M27.21,12.08c.67-2.01,.44-4.21-.63-6.04-1.61-2.8-4.85-4.24-8.01-3.57C17.16,.89,15.14-.01,13.02,0c-3.23,0-6.1,2.08-7.1,5.15-2.08,.43-3.87,1.73-4.92,3.57-1.62,2.8-1.25,6.32,.92,8.72-.67,2.01-.44,4.21,.63,6.03,1.61,2.81,4.85,4.25,8.02,3.58,1.4,1.58,3.42,2.49,5.54,2.48,3.23,0,6.1-2.08,7.1-5.15,2.08-.43,3.87-1.73,4.91-3.57,1.63-2.8,1.26-6.32-.91-8.72Zm-2.3-5.07c.64,1.12,.88,2.43,.66,3.7-.04-.03-.12-.07-.17-.1l-5.88-3.4c-.3-.17-.67-.17-.97,0l-6.89,3.98v-2.92l5.69-3.29c2.65-1.53,6.03-.62,7.56,2.03Zm-13.25,6.07l2.9-1.68,2.9,1.68v3.35l-2.9,1.68-2.9-1.68v-3.35ZM13.01,1.93c1.3,0,2.55,.45,3.55,1.28-.04,.02-.12,.07-.18,.1l-5.88,3.39c-.3,.17-.48,.49-.48,.84v7.96l-2.53-1.46V7.46c0-3.06,2.47-5.53,5.53-5.54ZM2.68,9.69h0c.65-1.12,1.66-1.98,2.88-2.43v6.99c0,.35,.18,.66,.48,.84l6.88,3.97-2.54,1.47-5.68-3.28c-2.64-1.53-3.55-4.91-2.02-7.56Zm1.55,12.83h0c-.65-1.11-.88-2.43-.66-3.7,.04,.03,.12,.07,.17,.1l5.88,3.4c.3,.17,.67,.17,.97,0l6.88-3.98v2.92l-5.69,3.28c-2.65,1.52-6.03,.62-7.56-2.02Zm11.89,5.08c-1.29,0-2.55-.45-3.54-1.28,.04-.02,.13-.07,.18-.1l5.88-3.39c.3-.17,.49-.49,.48-.84v-7.95l2.53,1.46v6.57c0,3.06-2.48,5.54-5.53,5.54Zm10.34-7.76c-.65,1.12-1.67,1.98-2.88,2.42v-6.99c0-.35-.18-.67-.48-.84h0l-6.89-3.98,2.53-1.46,5.69,3.28c2.65,1.53,3.55,4.91,2.02,7.56Z"></path></svg></a>
+  <div class="row mb-1">
+    
+      <div class="col-6 col-lg">
+        <ul class="mb-2">
+          <div class="small-caps mb-1/3">Featured</div>
+          
+            <li><a class="fade" href="/blog/chatgpt/">ChatGPT</a></li>
+          
+            <li><a class="fade" href="/dall-e-2/">DALL·E 2</a></li>
+          
+            <li><a class="fade" href="/blog/whisper/">Whisper</a></li>
+          
+            <li><a class="fade" href="/alignment/">Alignment</a></li>
+          
+            <li><a class="fade" href="/fund/">Startup Fund</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="col-6 col-lg">
+        <ul class="mb-2">
+          <div class="small-caps mb-1/3">API</div>
+          
+            <li><a class="fade" href="/api/">Overview</a></li>
+          
+            <li><a class="fade" href="/api/pricing/">Pricing</a></li>
+          
+            <li><a class="fade" href="/api/examples/">Examples</a></li>
+          
+            <li><a class="fade" href="/api/docs/">Docs</a></li>
+          
+            <li><a class="fade" href="/api/policies/">Terms & Policies</a></li>
+          
+            <li><a class="fade" href="https://status.openai.com/">Status</a></li>
+          
+            <li><a class="fade" href="/api/login/">Log in</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="col-6 col-lg">
+        <ul class="mb-2">
+          <div class="small-caps mb-1/3">Blog</div>
+          
+            <li><a class="fade" href="/blog/">Index</a></li>
+          
+            <li><a class="fade" href="/blog/tags/research/">Research</a></li>
+          
+            <li><a class="fade" href="/blog/tags/announcements/">Announcements</a></li>
+          
+            <li><a class="fade" href="/blog/tags/events/">Events</a></li>
+          
+            <li><a class="fade" href="/blog/tags/milestones/">Milestones</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="col-6 col-lg">
+        <ul class="mb-2">
+          <div class="small-caps mb-1/3">Information</div>
+          
+            <li><a class="fade" href="/about/">About Us</a></li>
+          
+            <li><a class="fade" href="/charter/">Our Charter</a></li>
+          
+            <li><a class="fade" href="/research/">Our Research</a></li>
+          
+            <li><a class="fade" href="/publications/">Publications</a></li>
+          
+            <li><a class="fade" href="/newsroom/">Newsroom</a></li>
+          
+            <li><a class="fade" href="/careers/">Careers</a></li>
+          
+        </ul>
+      </div>
+    
+  </div>
+  <div class="row align-items-center mb-0.125">
+    <div class="col-12 col-md mb-0.5">
+      <a class="fade" style="margin-top:1px" href="/">OpenAI &copy; 2015–2022</a>&emsp;<wbr><a class="fade" style="margin-top:1px" href="/privacy/">Privacy&nbsp;Policy</a>&emsp;<wbr><a class="fade" style="margin-top:1px" href="/terms/">Terms&nbsp;of&nbsp;Use</a>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4 col-xl-3 mb-0.5">
+      <div class="d-block d-md-none" style="font-size:1.333333rem"> <a class="fade icon" href="https://twitter.com/openai">twitter</a> &ensp; <a class="fade icon" href="https://youtube.com/openai">youtube</a> &ensp; <a class="fade icon" href="https://github.com/openai/">github</a> &ensp; <a class="fade icon" href="https://soundcloud.com/openai_audio">soundcloud</a> &ensp; <a class="fade icon" href="https://linkedin.com/company/openai">linkedin</a> &ensp; <a class="fade icon" href="https://facebook.com/openai.research/">facebook</a> </div> <div class="d-none d-md-block" style="font-size:1.166667rem"> <div class="d-flex justify-content-between"> <a class="fade icon" href="https://twitter.com/openai">twitter</a> &ensp; <a class="fade icon" href="https://youtube.com/openai">youtube</a> &ensp; <a class="fade icon" href="https://github.com/openai/">github</a> &ensp; <a class="fade icon" href="https://soundcloud.com/openai_audio">soundcloud</a> &ensp; <a class="fade icon" href="https://linkedin.com/company/openai">linkedin</a> &ensp; <a class="fade icon" href="https://facebook.com/openai.research/">facebook</a> </div> </div>
+    </div>
+  </div>
+</footer>
+  <script type="text/javascript" src="https://openai.com/assets/scripts/main.js?v=b4ca92bb18"></script>
+  
+  <script>
+  var rt = document.body.querySelector('.reading-time');
+  rt.innerHTML += ', 16 minute listen';
+</script>
+<script src="https://cdn.openai.com/musenet/demo/bundle.v7.js"></script>
+
+<script type="module">
+
+import {Runtime, Inspector, Library} from "https://unpkg.com/@observablehq/runtime@4.5.0/dist/runtime.js";
+import notebook from "https://cdn.openai.com/musenet/visualization/c8b2460ddacd0978%40401.js";
+// import notebook from "https://api.observablehq.com/d/c8b2460ddacd0978.js?v=3";
+
+const customWidth = function (selector) {
+  return (new Library).Generators.observe(function(change) {
+    var width = change(document.querySelector(selector).clientWidth);
+    function resized() {
+      var w = document.querySelector(selector).clientWidth;
+      if (w !== width) change(width = w);
+    }
+    window.addEventListener("resize", resized);
+    return function() {
+      window.removeEventListener("resize", resized);
+    };
+  });
+};
+
+new Runtime(Object.assign(new Library, {width: customWidth("#composer-embeddings")})).module(notebook, name => {
+  switch (name) {
+    case "inlinecss": return new Inspector(document.querySelector("#composer-embeddings-css"));
+    case "chart": return new Inspector(document.querySelector("#composer-embeddings"));
+  }
+});
+
+</script>
+</body>
+</html>
