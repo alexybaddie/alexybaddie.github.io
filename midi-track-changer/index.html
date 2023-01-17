@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MIDI File Processor</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+    </style>
+</head>
+<body>
+    <h1>MIDI File Processor</h1>
+    <div>
+      <input type="file" id="file-input" style="display:none" accept=".mid" onchange="processMIDI()">
+      <div id="container">
+        <button id="choose-file-button" onclick="chooseFile()">Choose File</button>
+        <button id="upload-button" onclick="uploadFile()" disabled>Upload</button>
+      </div>
+      <p id="file-name"></p>
+      <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div id="output"></div>
+
+    <script>
+      function chooseFile() {
+        let fileInput = document.getElementById("file-input");
+        fileInput.click();
+        document.getElementById("upload-button").disabled = false;
+      }
+      function processMIDI() {
+        let fileInput = document.getElementById("file-input");
+        let file = fileInput.files[0];
+        let fileName = document.getElementById("file-name");
+        fileName.innerHTML = "Selected file: " + file.name;
+        let reader = new FileReader();
+        reader.onload = function() {
+          let midiFile = new Midi(reader.result);
+          let tracks = midiFile.tracks;
+          //you can process the tracks as explained before
+          let output = document.getElementById("output");
+          output.innerHTML = "File processed: " + file.name;
+        }
+        reader.readAsArrayBuffer(file);
+      }
+      function uploadFile() {
+        let fileInput = document.getElementById("file-input");
+        let file = fileInput.files[0];
+        let reader = new FileReader();
+        let progressBar = document.getElementById("progress-bar");
+        reader.onloadstart = function() {
+          progressBar.style.width = "0%";
+        }
+        reader.onload = function() {
+          let midiFile = new Midi(reader.result);
+          let tracks = midiFile.tracks;
+          //you can process the tracks as explained before
+          let output = document.getElementById("output");
+          output.innerHTML = "File processed: " + file.name;
+        }
+        reader.onprogress = function(e) {
+          let progress = Math.round((e.loaded / e.total) * 100);
+          progressBar.style.width = progress + "%";
+        }
+        reader.onloadend = function() {
+          progressBar.style.width = "100%";
+        }
+        reader.readAsArrayBuffer(file);
+      }
+      </script>
+</body>
+</html>
