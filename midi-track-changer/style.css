@@ -17,7 +17,7 @@ h1 {
 }
 
 /* Media query for screens wider than 1440 pixels */
-@media (min-width: 1440px) and (min-height: 1080px) {
+/* @media (min-width: 1440px) and (min-height: 1080px) {
     body {
         font-size: 200%;
     }
@@ -34,8 +34,12 @@ h1 {
     #progress-bar-container {
         width: 200%;
     }
-}
+} */
 
+/*
+html {
+  transform: scale(200%);
+} */
 
 body {
     display: flex;
@@ -48,7 +52,7 @@ body {
 }
 
 #choose-file-button, #upload-button {
-    padding: 10px 30px;
+    padding: 10px 25px;
     font-size: 20px;
     background-color: #3f51b5;
     color: white;
@@ -105,4 +109,44 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+
+
+#download-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#upload-button i {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+#download-button i {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+#download-button {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #3f51b5;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    margin-top: 15px;
+  /*  margin-left: 10px; */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#download-button:hover {
+    background-color: #444;
+}
+
+#download-button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
 }

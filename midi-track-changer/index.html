@@ -3,6 +3,7 @@
 <head>
     <title>MIDI File Processor</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
     </style>
@@ -13,12 +14,15 @@
       <input type="file" id="file-input" style="display:none" accept=".mid" onchange="processMIDI()">
       <div id="container">
         <button id="choose-file-button" onclick="chooseFile()">Choose File</button>
-        <button id="upload-button" onclick="uploadFile()" disabled>Upload</button>
+        <button id="upload-button" onclick="uploadFile()" disabled><i class="fas fa-upload"></i>Upload</button>
       </div>
       <p id="file-name"></p>
       <div id="progress-bar-container">
         <div id="progress-bar"></div>
       </div>
+      <div id="download-container">
+        <button id="download-button" onclick="downloadFile()" disabled><i class="fas fa-download"></i>Download</button>
+    </div>
     </div>
     <br>
     <br>
@@ -68,6 +72,22 @@
           progressBar.style.width = "100%";
         }
         reader.readAsArrayBuffer(file);
+      }
+      function downloadFile() {
+        // Create a new Blob object containing the processed MIDI data
+        var data = new Blob([processedMIDI], {type: 'audio/midi'});
+
+        // Create a link element with the download attribute set to the desired filename
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(data);
+        link.download = 'processed-midi.mid';
+
+        // Append the link to the body and simulate a click on the link to initiate the download
+        document.body.appendChild(link);
+        link.click();
+
+        // Remove the link from the body
+        document.body.removeChild(link);
       }
       </script>
 </body>
