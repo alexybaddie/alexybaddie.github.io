@@ -3,6 +3,44 @@ import * as midiManager from 'midi-file';
 var parseMidi = require('midi-file').parseMidi;
 var writeMidi = require('midi-file').writeMidi;
 
+let midiData;
+
+
+export function separateTracks(numTracksPerNote) {
+    let tracks = midiData.tracks;
+    let newTracks = [];
+    let trackCounter = 0;
+    let absoluteTime = 0;
+    let trackOfHeldNotes = {};
+    for (let i = 0; i < tracks.length; i++) {
+        let track = tracks[i];
+        for (let j = 0; j < track.length; j++) {
+            let event = track[j];
+            absoluteTime += event.deltaTime;
+            event.absoluteTime = absoluteTime;
+            var trackToInsert = event.type == "noteOff" ? trackOfHeldNotes[event.pitch] : trackCounter;
+            if (!newTracks[trackToInsert]) {
+                newTracks[trackToInsert] = [];
+                event.deltaTime = absoluteTime;
+            } else {
+                event.deltaTime = absoluteTime - newTracks[trackToInsert].at(-1).absoluteTime;
+            }
+            newTracks[trackToInsert].push(event);
+            if (event.type === "noteOn") {
+                trackOfHeldNotes[event.pitch] = trackCounter;
+                trackCounter++;
+                if (trackToInsert === trackCounter) {
+                    trackCounter = 0;
+                }
+            }
+        }
+    }
+    midiData.tracks = newTracks;
+}
+
+
+
+
 // choose the file
 export function chooseFile() {
   let fileInput = document.getElementById("file-input");
@@ -11,8 +49,6 @@ export function chooseFile() {
 }
 
 // process the file
-let midiData;
-
 export function processMIDI() {
   let fileInput = document.getElementById("file-input");
   let file = fileInput.files[0];
@@ -42,6 +78,8 @@ export function uploadFile() {
     var content = new Uint8Array(readerEvent.target.result);
     midiData = parseMidi(content);
     //you can process the tracks as explained before
+    separateTracks(3);
+
     setTimeout(function(){
       let output = document.getElementById("output");
       output.innerHTML = "File processed: " + replacename + " (Separated).mid";
