@@ -1,4 +1,4 @@
-import * as MidiFile from 'midi-file'
+import * as midiManager from 'midi-file';
 
 // choose the file
 export function chooseFile() {
@@ -18,7 +18,7 @@ export function processMIDI() {
   let reader = new FileReader();
   reader.onload = function() {
     let buffer = reader.result;
-    let midiFile = new MidiFile(buffer);
+    const parsed = midiManager.parseMidi(buffer);
     let tracks = midiFile.tracks;
     tracks.forEach((track) => {
         console.log(track);
@@ -41,7 +41,7 @@ export function uploadFile() {
     progressBar.style.width = "0%";
   }
   reader.onloadstart = function() {
-    let midiFile = new MidiFile(reader.result);
+    const parsed = midiManager.parseMidi(reader.result);
     let tracks = midiFile.tracks;
     //you can process the tracks as explained before
     let output = document.getElementById("output");
