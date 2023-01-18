@@ -1,5 +1,7 @@
+import * as MidiFile from 'midi-file'
+
 // choose the file
-function chooseFile() {
+export function chooseFile() {
   let fileInput = document.getElementById("file-input");
   fileInput.click();
   document.getElementById("upload-button").disabled = false;
@@ -8,24 +10,29 @@ function chooseFile() {
 // process the file
 let tracks;
 
-function processMIDI() {
+export function processMIDI() {
   let fileInput = document.getElementById("file-input");
   let file = fileInput.files[0];
   let fileName = document.getElementById("file-name");
   fileName.innerHTML = "Selected file: " + file.name;
   let reader = new FileReader();
   reader.onload = function() {
-    let midiFile = new Midi(reader.result);
-    tracks = midiFile.tracks;
-    //you can process the tracks as explained before
+    let buffer = reader.result;
+    let midiFile = new MidiFile(buffer);
+    let tracks = midiFile.tracks;
+    tracks.forEach((track) => {
+        console.log(track);
+        // Do something with the track
+    });
     let output = document.getElementById("output");
     output.innerHTML = "File processed: " + file.name;
+    document.getElementById("download-button").disabled = !tracks;
   }
   reader.readAsArrayBuffer(file);
 }
 
 // upload the file
-function uploadFile() {
+export function uploadFile() {
   let fileInput = document.getElementById("file-input");
   let file = fileInput.files[0];
   let reader = new FileReader();
@@ -33,14 +40,12 @@ function uploadFile() {
   reader.onloadstart = function() {
     progressBar.style.width = "0%";
   }
-  reader.onload = function() {
-    let midiFile = new Midi(reader.result);
+  reader.onloadstart = function() {
+    let midiFile = new MidiFile(reader.result);
     let tracks = midiFile.tracks;
     //you can process the tracks as explained before
     let output = document.getElementById("output");
     output.innerHTML = "File processed: " + file.name;
-    document.getElementById("download-button").disabled = !tracks;
-
   }
   reader.onprogress = function(e) {
     let progress = Math.round((e.loaded / e.total) * 100);
@@ -53,7 +58,7 @@ function uploadFile() {
 }
 
 // download the file
-function downloadFile() {
+export function downloadFile() {
   if (tracks) {
     let processedMIDI = new MidiWriter.Writer();
     tracks.forEach(track => {
@@ -71,6 +76,3 @@ function downloadFile() {
     console.log("tracks not defined");
   }
 }
-
-
-<script src="script.js"></script>
