@@ -17,6 +17,13 @@ export function separateTracks(numTracksPerNote) {
             let event = track[j];
             absoluteTime += event.deltaTime;
             event.absoluteTime = absoluteTime;
+            if (event.type === "noteOn") {
+                trackCounter++;
+                if (trackCounter === numTracksPerNote) {
+                    trackCounter = 0;
+                }
+                trackOfHeldNotes[event.noteNumber] = trackCounter;
+            }
             var trackToInsert = event.type == "noteOff" ? trackOfHeldNotes[event.noteNumber] : trackCounter;
             if(event.type === 'controlChange' && (event.controllerType === 64 || event.controllerType === 66 || event.controllerType === 67)){
                 trackToInsert = 7;
@@ -29,13 +36,6 @@ export function separateTracks(numTracksPerNote) {
                 event.deltaTime = absoluteTime - newTracks[trackToInsert].at(-1).absoluteTime;
             }
             newTracks[trackToInsert].push(event);
-            if (event.type === "noteOn") {
-                trackOfHeldNotes[event.noteNumber] = trackCounter;
-                trackCounter++;
-                if (trackCounter === numTracksPerNote) {
-                    trackCounter = 0;
-                }
-            }
         }
     }
     midiData.tracks = newTracks;
