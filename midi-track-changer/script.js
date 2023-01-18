@@ -15,20 +15,14 @@ export function processMIDI() {
   let file = fileInput.files[0];
   let fileName = document.getElementById("file-name");
   fileName.innerHTML = "Selected file: " + file.name;
-  let reader = new FileReader();
-  reader.onload = function() {
-    let buffer = reader.result;
-    const parsed = midiManager.parseMidi(buffer);
-    let tracks = midiFile.tracks;
-    tracks.forEach((track) => {
-        console.log(track);
-        // Do something with the track
-    });
-    let output = document.getElementById("output");
-    output.innerHTML = "File processed: " + file.name;
-    document.getElementById("download-button").disabled = !tracks;
-  }
-  reader.readAsArrayBuffer(file);
+  var reader = new FileReader();
+	reader.readAsArrayBuffer(file);
+	window.file = file;
+
+	reader.onload = readerEvent => {
+		var content = new Uint8Array(readerEvent.target.result);
+		var midiData = parseMidi(content);
+  };
 }
 
 // upload the file
