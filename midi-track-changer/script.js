@@ -19,6 +19,10 @@ export function separateTracks(numTracksPerNote) {
             absoluteTime += event.deltaTime;
             event.absoluteTime = absoluteTime;
             var trackToInsert = event.type == "noteOff" ? trackOfHeldNotes[event.pitch] : trackCounter;
+            if(event.type === 'controlChange' && (event.controllerType === 64 || event.controllerType === 66 || event.controllerType === 67)){
+                trackToInsert = 5;
+            }
+
             if (!newTracks[trackToInsert]) {
                 newTracks[trackToInsert] = [];
                 event.deltaTime = absoluteTime;
@@ -29,7 +33,7 @@ export function separateTracks(numTracksPerNote) {
             if (event.type === "noteOn") {
                 trackOfHeldNotes[event.pitch] = trackCounter;
                 trackCounter++;
-                if (trackToInsert === trackCounter) {
+                if (trackCounter === numTracksPerNote) {
                     trackCounter = 0;
                 }
             }
