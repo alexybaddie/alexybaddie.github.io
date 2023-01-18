@@ -86,7 +86,7 @@ export function uploadFile() {
 
     setTimeout(function(){
       let output = document.getElementById("output");
-      output.innerHTML = "File processed: " + replacename + " (Separated).mid";
+      output.innerHTML = "File processed: " + replacename + " (Processed).mid";
       document.getElementById("download-button").disabled = !midiData;
     }, 350);
 
@@ -111,7 +111,7 @@ export function downloadFile() {
     var data = new Blob([new Uint8Array(writeMidi(midiData))], {type: "audio/midi"});
     var link = document.createElement('a');
     link.href = window.URL.createObjectURL(data);
-    link.download = replacename + " (Separated).mid";
+    link.download = replacename + " (Processed).mid";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
