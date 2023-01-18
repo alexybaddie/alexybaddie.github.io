@@ -1,47 +1,5 @@
-/* Default styles */
 body {
     font-size: 16px;
-}
-
-h1 {
-    font-size: 32px;
-}
-
-#choose-file-button, #upload-button {
-    padding: 10px 20px;
-    font-size: 20px;
-}
-
-#progress-bar-container {
-    width: 300px;
-}
-
-/* Media query for screens wider than 1440 pixels */
-/* @media (min-width: 1440px) and (min-height: 1080px) {
-    body {
-        font-size: 200%;
-    }
-
-    h1 {
-        font-size: 200%;
-    }
-
-    #choose-file-button, #upload-button {
-        padding: 200%;
-        font-size: 200%;
-    }
-
-    #progress-bar-container {
-        width: 200%;
-    }
-} */
-
-/*
-html {
-  transform: scale(200%);
-} */
-
-body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,7 +16,6 @@ body {
     color: white;
     border-radius: 10px;
     border: none;
-  /*  margin-left: 10px; */
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
@@ -79,10 +36,10 @@ body {
 } */
 
 h1 {
+    font-size: 32px;
     margin-bottom: 20px;
     text-align: center;
     font-weight: bold;
-  /*  margin-right: 25px; */
     color: #3f51b5;
 }
 
@@ -90,7 +47,6 @@ h1 {
     width: 300px;
     height: 20px;
     background-color: #9f9f9f;
-  /*  border: 1px solid #3f51b5; */
     margin-top: 10px;
     position: relative;
 }
@@ -137,7 +93,6 @@ h1 {
     border-radius: 10px;
     border: none;
     margin-top: 15px;
-  /*  margin-left: 10px; */
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
@@ -150,260 +105,3 @@ h1 {
     background-color: #ccc;
     cursor: not-allowed;
 }
-
-
-
-
-
-
-
-
-
-
-/*
-
-function processMIDI() {
-  let fileInput = document.getElementById("file-input");
-  let file = fileInput.files[0];
-  let fileName = document.getElementById("file-name");
-  fileName.innerHTML = "Selected file: " + file.name;
-  let reader = new FileReader();
-  reader.onload = function() {
-    let midiFile = new Midi(reader.result);
-    let tracks = midiFile.tracks;
-    //you can process the tracks as explained before
-    let output = document.getElementById("output");
-    output.innerHTML = "File processed: " + file.name;
-  }
-  reader.readAsArrayBuffer(file);
-}
-
-function downloadFile() {
-  // Create a new Blob object containing the processed MIDI data
-  var data = new Blob([processedMIDI], {type: 'audio/midi'});
-  // Create a link element with the download attribute set to the desired filename
-  var link = document.createElement('a');
-  link.href = window.URL.createObjectURL(data);
-  link.download = 'processed-midi.mid';
-  // Append the link to the body and simulate a click on the link to initiate the download
-  document.body.appendChild(link);
-  link.click();
-  // Remove the link from the body
-  document.body.removeChild(link);
-}
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>MIDI File Processor</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-    </style>
-    <script src="node_modules/midi.js/lib/midi.js"></script>
-    <script src="node_modules/midi-writer-js/browser/midiwriter.js"></script>
-    <script src="node_modules/midi-file-parser/index.js"></script>
-</head>
-<body>
-    <h1>MIDI File Processor</h1>
-    <div>
-      <input type="file" id="file-input" style="display:none" accept=".mid" onchange="processMIDI()">
-      <div id="container">
-        <button id="choose-file-button" onclick="chooseFile()">Choose File</button>
-        <button id="upload-button" onclick="uploadFile()" disabled><i class="fas fa-upload"></i>Upload</button>
-      </div>
-      <p id="file-name"></p>
-      <div id="progress-bar-container">
-        <div id="progress-bar"></div>
-      </div>
-      <div id="download-container">
-        <button id="download-button" onclick="downloadFile()" disabled><i class="fas fa-download"></i>Download</button>
-    </div>
-    </div>
-    <br>
-    <br>
-    <div id="output"></div>
-    <script>
-
-    // choose the file
-    function chooseFile() {
-      let fileInput = document.getElementById("file-input");
-      fileInput.click();
-      document.getElementById("upload-button").disabled = false;
-    }
-
-    // process the file
-    let tracks;
-
-    function processMIDI() {
-      let fileInput = document.getElementById("file-input");
-      let file = fileInput.files[0];
-      let fileName = document.getElementById("file-name");
-      fileName.innerHTML = "Selected file: " + file.name;
-      let reader = new FileReader();
-      reader.onload = function() {
-        let midiFile = new MidiFileParser(reader.result);
-        tracks = midiFile.getTracks();
-        //you can process the tracks as explained before
-        let output = document.getElementById("output");
-        output.innerHTML = "File processed: " + file.name;
-        document.getElementById("download-button").disabled = !tracks;
-      }
-      reader.readAsArrayBuffer(file);
-    }
-
-    // upload the file
-    function uploadFile() {
-      let fileInput = document.getElementById("file-input");
-      let file = fileInput.files[0];
-      let reader = new FileReader();
-      let progressBar = document.getElementById("progress-bar");
-      reader.onloadstart = function() {
-        progressBar.style.width = "0%";
-      }
-      reader.onload = function() {
-        let midiFile = new MidiFileParser(reader.result);
-        let tracks = midiFile.parse();
-        //you can process the tracks as explained before
-        let output = document.getElementById("output");
-        output.innerHTML = "File processed: " + file.name;
-      }
-      reader.onprogress = function(e) {
-        let progress = Math.round((e.loaded / e.total) * 100);
-        progressBar.style.width = progress + "%";
-      }
-      reader.onloadend = function() {
-        progressBar.style.width = "100%";
-      }
-      reader.readAsArrayBuffer(file);
-    }
-
-    // download the file
-    function downloadFile() {
-      if (tracks) {
-        let processedMIDI = new MidiWriter.Writer();
-        tracks.forEach(track => {
-            processedMIDI.addTrack(track);
-        });
-        processedMIDI = processedMIDI.buildFile();
-        var data = new Blob([processedMIDI], {type: 'audio/midi'});
-        var link = document.createElement('a');
-        link.href = window.URL.createObjectURL(data);
-        link.download = 'processed-midi.mid';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } else {
-        console.log("tracks not defined");
-      }
-    }
-    </script>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // choose the file
-    function chooseFile() {
-      let fileInput = document.getElementById("file-input");
-      fileInput.click();
-      document.getElementById("upload-button").disabled = false;
-    }
-
-    // process the file
-    let tracks;
-
-    function processMIDI() {
-      let fileInput = document.getElementById("file-input");
-      let file = fileInput.files[0];
-      let fileName = document.getElementById("file-name");
-      fileName.innerHTML = "Selected file: " + file.name;
-      let reader = new FileReader();
-      reader.onload = function() {
-        let midiFile = new Midi(reader.result);
-        tracks = midiFile.tracks;
-        //you can process the tracks as explained before
-        let output = document.getElementById("output");
-        output.innerHTML = "File processed: " + file.name;
-        document.getElementById("download-button").disabled = !tracks;
-      }
-      reader.readAsArrayBuffer(file);
-    }
-
-    // upload the file
-    function uploadFile() {
-      let fileInput = document.getElementById("file-input");
-      let file = fileInput.files[0];
-      let reader = new FileReader();
-      let progressBar = document.getElementById("progress-bar");
-      reader.onloadstart = function() {
-        progressBar.style.width = "0%";
-      }
-      reader.onload = function() {
-        let midiFile = new Midi(reader.result);
-        let tracks = midiFile.tracks;
-        //you can process the tracks as explained before
-        let output = document.getElementById("output");
-        output.innerHTML = "File processed: " + file.name;
-      }
-      reader.onprogress = function(e) {
-        let progress = Math.round((e.loaded / e.total) * 100);
-        progressBar.style.width = progress + "%";
-      }
-      reader.onloadend = function() {
-        progressBar.style.width = "100%";
-      }
-      reader.readAsArrayBuffer(file);
-    }
-
-    // download the file
-    function downloadFile() {
-      if (tracks) {
-        let processedMIDI = new MidiWriter.Writer();
-        tracks.forEach(track => {
-            processedMIDI.addTrack(track);
-        });
-        processedMIDI = processedMIDI.buildFile();
-        var data = new Blob([processedMIDI], {type: 'audio/midi'});
-        var link = document.createElement('a');
-        link.href = window.URL.createObjectURL(data);
-        link.download = 'processed-midi.mid';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } else {
-        console.log("tracks not defined");
-      }
-    }
-
-
-
-
-
-
-*/
