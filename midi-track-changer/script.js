@@ -1,0 +1,76 @@
+// choose the file
+function chooseFile() {
+  let fileInput = document.getElementById("file-input");
+  fileInput.click();
+  document.getElementById("upload-button").disabled = false;
+}
+
+// process the file
+let tracks;
+
+function processMIDI() {
+  let fileInput = document.getElementById("file-input");
+  let file = fileInput.files[0];
+  let fileName = document.getElementById("file-name");
+  fileName.innerHTML = "Selected file: " + file.name;
+  let reader = new FileReader();
+  reader.onload = function() {
+    let midiFile = new Midi(reader.result);
+    tracks = midiFile.tracks;
+    //you can process the tracks as explained before
+    let output = document.getElementById("output");
+    output.innerHTML = "File processed: " + file.name;
+  }
+  reader.readAsArrayBuffer(file);
+}
+
+// upload the file
+function uploadFile() {
+  let fileInput = document.getElementById("file-input");
+  let file = fileInput.files[0];
+  let reader = new FileReader();
+  let progressBar = document.getElementById("progress-bar");
+  reader.onloadstart = function() {
+    progressBar.style.width = "0%";
+  }
+  reader.onload = function() {
+    let midiFile = new Midi(reader.result);
+    let tracks = midiFile.tracks;
+    //you can process the tracks as explained before
+    let output = document.getElementById("output");
+    output.innerHTML = "File processed: " + file.name;
+    document.getElementById("download-button").disabled = !tracks;
+
+  }
+  reader.onprogress = function(e) {
+    let progress = Math.round((e.loaded / e.total) * 100);
+    progressBar.style.width = progress + "%";
+  }
+  reader.onloadend = function() {
+    progressBar.style.width = "100%";
+  }
+  reader.readAsArrayBuffer(file);
+}
+
+// download the file
+function downloadFile() {
+  if (tracks) {
+    let processedMIDI = new MidiWriter.Writer();
+    tracks.forEach(track => {
+        processedMIDI.addTrack(track);
+    });
+    processedMIDI = processedMIDI.buildFile();
+    var data = new Blob([processedMIDI], {type: 'audio/midi'});
+    var link = document.createElement('a');
+    link.href = window.URL.createObjectURL(data);
+    link.download = 'processed-midi.mid';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } else {
+    console.log("tracks not defined");
+  }
+}
+
+
+<script src="script.js"></script>

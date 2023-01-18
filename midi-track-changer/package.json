@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "jsmidgen": "^0.1.5",
+    "midi-file-parser": "^1.0.0",
+    "midi-writer-js": "^2.1.4",
+    "midi.js": "^0.3.1"
+  }
+}

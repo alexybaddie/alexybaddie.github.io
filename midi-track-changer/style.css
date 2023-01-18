@@ -150,3 +150,46 @@ h1 {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+
+
+
+
+
+
+
+
+
+/*
+
+function processMIDI() {
+  let fileInput = document.getElementById("file-input");
+  let file = fileInput.files[0];
+  let fileName = document.getElementById("file-name");
+  fileName.innerHTML = "Selected file: " + file.name;
+  let reader = new FileReader();
+  reader.onload = function() {
+    let midiFile = new Midi(reader.result);
+    let tracks = midiFile.tracks;
+    //you can process the tracks as explained before
+    let output = document.getElementById("output");
+    output.innerHTML = "File processed: " + file.name;
+  }
+  reader.readAsArrayBuffer(file);
+}
+
+function downloadFile() {
+  // Create a new Blob object containing the processed MIDI data
+  var data = new Blob([processedMIDI], {type: 'audio/midi'});
+  // Create a link element with the download attribute set to the desired filename
+  var link = document.createElement('a');
+  link.href = window.URL.createObjectURL(data);
+  link.download = 'processed-midi.mid';
+  // Append the link to the body and simulate a click on the link to initiate the download
+  document.body.appendChild(link);
+  link.click();
+  // Remove the link from the body
+  document.body.removeChild(link);
+}
+
+*/
