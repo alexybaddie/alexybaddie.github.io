@@ -81,6 +81,18 @@ h1 {
     font-size: 18px;
 }
 
+.track-number {
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #3f51b5;
+    text-align: center;
+    font-size: 18px;
+    color: #3f51b5;
+    margin-top: 15px;
+}
+
+
 /* Responsive styles */
 @media only screen and (max-width: 768px) {
 

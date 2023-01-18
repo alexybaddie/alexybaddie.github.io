@@ -5,7 +5,6 @@ var writeMidi = require('midi-file').writeMidi;
 
 let midiData;
 
-
 export function separateTracks(numTracksPerNote) {
     let tracks = midiData.tracks;
     let newTracks = [];
@@ -20,7 +19,7 @@ export function separateTracks(numTracksPerNote) {
             event.absoluteTime = absoluteTime;
             var trackToInsert = event.type == "noteOff" ? trackOfHeldNotes[event.noteNumber] : trackCounter;
             if(event.type === 'controlChange' && (event.controllerType === 64 || event.controllerType === 66 || event.controllerType === 67)){
-                trackToInsert = 5;
+                trackToInsert = 7;
             }
 
             if (!newTracks[trackToInsert]) {
@@ -41,9 +40,6 @@ export function separateTracks(numTracksPerNote) {
     }
     midiData.tracks = newTracks;
 }
-
-
-
 
 // choose the file
 export function chooseFile() {
@@ -82,7 +78,12 @@ export function uploadFile() {
     var content = new Uint8Array(readerEvent.target.result);
     midiData = parseMidi(content);
     //you can process the tracks as explained before
-    separateTracks(3);
+
+    let tracksNumber = document.getElementById("track-number").value;
+    document.getElementById("track-number").addEventListener("input", function() {
+        tracksNumber = this.value;
+    });
+    separateTracks(parseInt(tracksNumber));
 
     setTimeout(function(){
       let output = document.getElementById("output");

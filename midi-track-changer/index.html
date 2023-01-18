@@ -12,6 +12,8 @@
     <h1>MIDI Track Changer</h1>
     <div>
       <input type="file" id="file-input" style="display:none" accept=".mid" onchange="webfunc.processMIDI()">
+      <center><label for="track-number">Number of tracks:</label>
+      <input type="number" id="track-number" min="1" max="6" value="3"></center>
       <div id="container">
         <button id="choose-file-button" onclick="webfunc.chooseFile()">Choose File</button>
         <button id="upload-button" onclick="webfunc.uploadFile()" disabled><i class="fas fa-upload"></i>Upload</button>
