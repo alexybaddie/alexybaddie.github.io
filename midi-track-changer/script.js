@@ -11,7 +11,7 @@ export function chooseFile() {
 }
 
 // process the file
-let tracks;
+let midiData;
 
 export function processMIDI() {
   let fileInput = document.getElementById("file-input");
@@ -40,11 +40,12 @@ export function uploadFile() {
   }
   reader.onload = readerEvent => {
     var content = new Uint8Array(readerEvent.target.result);
-    var midiData = parseMidi(content);
+    midiData = parseMidi(content);
     //you can process the tracks as explained before
     setTimeout(function(){
       let output = document.getElementById("output");
-      output.innerHTML = "File processed: " + replacename + " (Colorized).mid";
+      output.innerHTML = "File processed: " + replacename + " (Separated).mid";
+      document.getElementById("download-button").disabled = !midiData;
     }, 350);
 
   }
@@ -63,20 +64,19 @@ export function downloadFile() {
   let fileInput = document.getElementById("file-input");
   let file = fileInput.files[0];
   var replacename = file.name.replace('.mid', '');
-  if (tracks) {
-    let processedMIDI = new MidiWriter.Writer();
-    tracks.forEach(track => {
-        processedMIDI.addTrack(track);
-    });
-    processedMIDI = processedMIDI.buildFile();
-    var data = new Blob([processedMIDI], {type: 'audio/midi'});
+  if (midiData) {
+    var newMidi = writeMidi(midiData);
+    var data = new Blob([new Uint8Array(writeMidi(midiData))], {type: "audio/midi"});
     var link = document.createElement('a');
     link.href = window.URL.createObjectURL(data);
-    link.download = replacename + " (Colorized).mid";
+    link.download = replacename + " (Separated).mid";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    setTimeout(function(){
+      location.reload();
+    }, 1750);
   } else {
-    console.log("tracks not defined");
+    console.log("midiData not defined");
   }
 }
