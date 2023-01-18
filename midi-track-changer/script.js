@@ -1,5 +1,8 @@
 import * as midiManager from 'midi-file';
 
+var parseMidi = require('midi-file').parseMidi;
+var writeMidi = require('midi-file').writeMidi;
+
 // choose the file
 export function chooseFile() {
   let fileInput = document.getElementById("file-input");
@@ -29,17 +32,21 @@ export function processMIDI() {
 export function uploadFile() {
   let fileInput = document.getElementById("file-input");
   let file = fileInput.files[0];
+  var replacename = file.name.replace('.mid', '');
   let reader = new FileReader();
   let progressBar = document.getElementById("progress-bar");
   reader.onloadstart = function() {
     progressBar.style.width = "0%";
   }
-  reader.onloadstart = function() {
-    const parsed = midiManager.parseMidi(reader.result);
-    let tracks = midiFile.tracks;
+  reader.onload = readerEvent => {
+    var content = new Uint8Array(readerEvent.target.result);
+    var midiData = parseMidi(content);
     //you can process the tracks as explained before
-    let output = document.getElementById("output");
-    output.innerHTML = "File processed: " + file.name;
+    setTimeout(function(){
+      let output = document.getElementById("output");
+      output.innerHTML = "File processed: " + replacename + " (Colorized).mid";
+    }, 350);
+
   }
   reader.onprogress = function(e) {
     let progress = Math.round((e.loaded / e.total) * 100);
@@ -53,6 +60,9 @@ export function uploadFile() {
 
 // download the file
 export function downloadFile() {
+  let fileInput = document.getElementById("file-input");
+  let file = fileInput.files[0];
+  var replacename = file.name.replace('.mid', '');
   if (tracks) {
     let processedMIDI = new MidiWriter.Writer();
     tracks.forEach(track => {
@@ -62,7 +72,7 @@ export function downloadFile() {
     var data = new Blob([processedMIDI], {type: 'audio/midi'});
     var link = document.createElement('a');
     link.href = window.URL.createObjectURL(data);
-    link.download = 'processed-midi.mid';
+    link.download = replacename + " (Colorized).mid";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
