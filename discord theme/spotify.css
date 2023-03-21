@@ -3272,7 +3272,7 @@ body,
   line-height: 24px;
   border-radius: 16px;
   border: var(--button-border);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--button-text-color);
   text-transform: uppercase;
@@ -3325,9 +3325,9 @@ body,
 }
 .button-ejjZWC.sizeMin-3Yqxk5, .button-ejjZWC.sizeSmall-3R2P2p, .button-ejjZWC.sizeMedium-2oH5mg, .button-ejjZWC.sizeLarge-D4HafV, .button-ejjZWC.sizeXlarge-2GQ4VO, .button-ejjZWC.buttonSize-dIiz43, .button-ejjZWC.buttonSize-3QlBTl {
   height: 32px;
-  min-height: 20px;
-  max-height: 20px;
-  line-height: 20px;
+  min-height: 32px;
+  max-height: 32px;
+  line-height: 24px;
 }
 .button-ejjZWC.iconButton-1li_a3 {
   padding: 0;
