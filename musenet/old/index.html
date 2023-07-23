@@ -2,40 +2,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>MuseNet MIDI Tool</title>
-		<style>
-			#loader-outer {
-				text-align: left;
-				display: inline-block;
-				border: 1px solid #808080;
-				width: 100px;
-				height: 8px;
-			}
-			#loader-inner {
-				display: inline-block;
-				background: green;
-				height: 100%;
-			}
-			@keyframes progress {
-				from {width: 0%;}
-				to {width: 100%;}
-			}
-			.quarter {
-				display: inline-block;
-				width: 24%;
-			}
-			input[type="number"] {
-				max-width: 50px;
-			}
-			select {
-				max-width: 150px;
-			}
-		</style>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body style="text-align: center;">
 		<p>
 			<input id="file-input" type="file" style="display: none;" onchange="importMidiFile(this.files[0])"/>
 			<input id="file-input-openai" type="file" style="display: none;" onchange="importMidiFileOpenAI(this.files[0])"/>
-			<a href="javascript:importMidi()">import midi</a> - <a href="javascript:importMidiOpenAI()" id="import-openai-link">import midi (openai)</a> - <a href="javascript:;" id="download_inbox">export midi</a> -- <a href="base.mid" target="_blank">base midi</a> - <a href="https://cdn.discordapp.com/attachments/194627386141179904/573188521863413780/musenet_tutorial.png" target="_blank">guide</a>
+			<a href="javascript:importMidi()">Import MIDI</a><a href="javascript:;" id="download_inbox">Export MIDI</a>
 			<textarea onchange="encodingToMidiFile(this.value, 'download_inbox')" id="inbox" style="width:96%; height: 33%"></textarea>
 		</p>
 		<p>
@@ -664,11 +637,11 @@
 			<label for="bass">Bass:</label><input type="checkbox" id="bass"/>&nbsp;
 			Temperature: <input id="temperature" value="0" size="1"/>&nbsp;
 			Truncation: <input id="truncation" value="27" size="1"/>&nbsp;
-			Generation Length: <input id="generationLength" value="550" size="1"/>&nbsp;
+			Generation Length: <input id="generationLength" value="512" size="1"/>&nbsp;
 			Preview:
 			<select id="format">
-				<option value="ogg">ogg</option>
 				<option value="mp3">mp3</option>
+				<option value="ogg">ogg</option>
 			</select>&nbsp;
 			<input type="button" value="Extend!" onclick="extend()" id="button"/>&nbsp;
 			<span id="loader-outer"><span id="loader-inner"></span></span>
@@ -676,12 +649,11 @@
 		<p>
 			<span class="quarter"><input type="button" value="Copy upwards" onclick="copyup('outbox1')" id="button"/></span><span class="quarter"><input type="button" value="Copy upwards" onclick="copyup('outbox2')" id="button"/></span><span class="quarter"><input type="button" value="Copy upwards" onclick="copyup('outbox3')" id="button"/></span><span class="quarter"><input type="button" value="Copy upwards" onclick="copyup('outbox4')" id="button"/></span>
 			<textarea onchange="encodingToMidiFile(this.value, 'download_outbox1')" id="outbox1" style="width:24%; height: 33%"></textarea><textarea onchange="encodingToMidiFile(this.value, 'download_outbox2')" id="outbox2" style="width:24%; height: 33%"></textarea><textarea onchange="encodingToMidiFile(this.value, 'download_outbox3')" id="outbox3" style="width:24%; height: 33%"></textarea><textarea onchange="encodingToMidiFile(this.value, 'download_outbox4')" id="outbox4" style="width:24%; height: 33%"></textarea>
-			<span class="quarter"><a href="javascript:;" id="download_outbox1">export midi</a></span><span class="quarter"><a href="javascript:;" id="download_outbox2">export midi</a></span><span class="quarter"><a href="javascript:;" id="download_outbox3">export midi</a></span><span class="quarter"><a href="javascript:;" id="download_outbox4">export midi</a></span>
 			<span class="quarter"><audio controls="controls" id="sound1" style="width: 98%"/></span><span class="quarter"><audio controls="controls" id="sound2" style="width: 98%"/></span><span class="quarter"><audio controls="controls" id="sound3" style="width: 98%"/></span><span class="quarter"><audio controls="controls" id="sound4" style="width: 98%"/></span>
+			<span class="quarter"><a href="javascript:;" id="download_outbox1">export midi</a></span><span class="quarter"><a href="javascript:;" id="download_outbox2">export midi</a></span><span class="quarter"><a href="javascript:;" id="download_outbox3">export midi</a></span><span class="quarter"><a href="javascript:;" id="download_outbox4">export midi</a></span>
 		</p>
-		<p>-</p>
 		<p>
-			<a href="https://github.com/MrCheeze/musenet-midi">original interface and blogpost (openai)</a> -- <a href="https://stevenwaterman.uk/musetree/" id="download_inbox">steven waterman's musetree</a> -- <a href="https://discord.gg/9faKVG2Xdp" target="_blank">flarn's discord</a>
+			<a href="https://github.com/MrCheeze/musenet-midi">original interface and blogpost (openai)</a><a href="https://stevenwaterman.uk/musetree/" id="download_inbox">steven waterman's musetree</a><a href="https://discord.gg/9faKVG2Xdp" target="_blank">flarn's discord</a><a href="javascript:importMidiOpenAI()" id="import-openai-link">Import MIDI (OpenAI)</a><a href="base.mid" target="_blank">Base MIDI</a><a href="https://cdn.discordapp.com/attachments/194627386141179904/573188521863413780/musenet_tutorial.png" target="_blank">Guide</a>
 		</p>
 		<script src="bundle.js"></script>
 	</body>
