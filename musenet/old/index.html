@@ -12,8 +12,9 @@
 			<textarea onchange="encodingToMidiFile(this.value, 'download_inbox')" id="inbox" style="width:96%; height: 33%"></textarea>
 		</p>
 		<p>
-			Genre:
-			<select id="genre">
+			<div id="genre-selection">
+				Genre:
+				<select id="genre">
 				<optgroup label="Standard">
 					<option value="chopin" selected="selected">Chopin</option>
 					<option value="mozart">Mozart</option>
@@ -628,23 +629,29 @@
 					<option value="tvthemes">tvthemes</option>
 				</optgroup>
 			</select>&nbsp;
-			<label for="piano">Piano:</label><input type="checkbox" id="piano" checked="checked"/>&nbsp;
-			<label for="strings">Strings:</label><input type="checkbox" id="strings"/>&nbsp;
-			<label for="winds">Winds:</label><input type="checkbox" id="winds"/>&nbsp;
-			<label for="drums">Drums:</label><input type="checkbox" id="drums"/>&nbsp;
-			<label for="harp">Harp:</label><input type="checkbox" id="harp"/>&nbsp;
-			<label for="guitar">Guitar:</label><input type="checkbox" id="guitar""/>&nbsp;
-			<label for="bass">Bass:</label><input type="checkbox" id="bass"/>&nbsp;
-			Temperature: <input id="temperature" value="0" size="1"/>&nbsp;
-			Truncation: <input id="truncation" value="27" size="1"/>&nbsp;
-			Generation Length: <input id="generationLength" value="512" size="1"/>&nbsp;
-			Preview:
-			<select id="format">
-				<option value="mp3">mp3</option>
-				<option value="ogg">ogg</option>
-			</select>&nbsp;
-			<input type="button" value="Extend!" onclick="extend()" id="button"/>&nbsp;
+				<input type="button" value="Extend!" onclick="extend()" id="button"/>&nbsp;
+			</div>
 			<span id="loader-outer"><span id="loader-inner"></span></span>
+			<p></p>
+			<div id="generation-options">
+				Temperature: <input id="temperature" value="0" size="1"/>&nbsp;
+				Truncation: <input id="truncation" value="27" size="1"/>&nbsp;
+				Generation Length: <input id="generationLength" value="512" size="1"/>&nbsp;
+				Preview:
+				<select id="format">
+					<option value="mp3">mp3</option>
+					<option value="ogg">ogg</option>
+				</select>&nbsp;
+			</div>
+			<div id="instrument-section">
+				<label for="piano">Piano:</label><input type="checkbox" id="piano" checked="checked"/>&nbsp;
+				<label for="strings">Strings:</label><input type="checkbox" id="strings"/>&nbsp;
+				<label for="winds">Winds:</label><input type="checkbox" id="winds"/>&nbsp;
+				<label for="drums">Drums:</label><input type="checkbox" id="drums"/>&nbsp;
+				<label for="harp">Harp:</label><input type="checkbox" id="harp"/>&nbsp;
+				<label for="guitar">Guitar:</label><input type="checkbox" id="guitar""/>&nbsp;
+				<label for="bass">Bass:</label><input type="checkbox" id="bass"/>&nbsp;
+			</div>
 		</p>
 		<p>
 			<span class="quarter"><input type="button" value="Copy upwards" onclick="copyup('outbox1')" id="button"/></span><span class="quarter"><input type="button" value="Copy upwards" onclick="copyup('outbox2')" id="button"/></span><span class="quarter"><input type="button" value="Copy upwards" onclick="copyup('outbox3')" id="button"/></span><span class="quarter"><input type="button" value="Copy upwards" onclick="copyup('outbox4')" id="button"/></span>
@@ -652,7 +659,7 @@
 			<span class="quarter"><audio controls="controls" id="sound1" style="width: 98%"/></span><span class="quarter"><audio controls="controls" id="sound2" style="width: 98%"/></span><span class="quarter"><audio controls="controls" id="sound3" style="width: 98%"/></span><span class="quarter"><audio controls="controls" id="sound4" style="width: 98%"/></span>
 			<span class="quarter"><a href="javascript:;" id="download_outbox1">export midi</a></span><span class="quarter"><a href="javascript:;" id="download_outbox2">export midi</a></span><span class="quarter"><a href="javascript:;" id="download_outbox3">export midi</a></span><span class="quarter"><a href="javascript:;" id="download_outbox4">export midi</a></span>
 		</p>
-		<p>
+		<p hidden>
 			<a href="https://github.com/MrCheeze/musenet-midi">original interface and blogpost (openai)</a><a href="https://stevenwaterman.uk/musetree/" id="download_inbox">steven waterman's musetree</a><a href="https://discord.gg/9faKVG2Xdp" target="_blank">flarn's discord</a><a href="javascript:importMidiOpenAI()" id="import-openai-link">Import MIDI (OpenAI)</a><a href="base.mid" target="_blank">Base MIDI</a><a href="https://cdn.discordapp.com/attachments/194627386141179904/573188521863413780/musenet_tutorial.png" target="_blank">Guide</a>
 		</p>
 		<script src="bundle.js"></script>

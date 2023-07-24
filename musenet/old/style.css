@@ -80,8 +80,8 @@ p {
 #loader-outer {
   text-align: left;
   display: inline-block;
-  border: 1px solid #9f9f9f; /* Updated progress bar outer border color */
-  width: 300px; /* Updated progress bar width */
+  background-color: #9f9f9f; /* Updated progress bar outer border color */
+  width: 425px; /* Updated progress bar width */
   height: 20px; /* Updated progress bar height */
 }
 
