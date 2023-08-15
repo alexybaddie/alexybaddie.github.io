@@ -1,0 +1,116 @@
+/* Custom color scheme */
+body {
+  background-color: #f0f0f0; /* Updated background color */
+  font-family: 'Open Sans', sans-serif; /* Updated font-family */
+  color: #3f51b5; /* Updated text color */
+}
+
+/* Custom buttons and links */
+button,
+input[type="button"],
+a.button,
+label.file-input-label,
+a {
+  display: inline-block;
+  padding: 10px 25px; /* Updated padding */
+  margin: 5px;
+  border: none;
+  border-radius: 10px; /* Updated border radius */
+  background-color: #3f51b5; /* Updated button background color */
+  color: #fff; /* Updated button text color */
+  font-size: 20px; /* Updated button font size */
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover,
+input[type="button"]:hover,
+a.button:hover,
+label.file-input-label:hover,
+a:hover {
+  background-color: #444; /* Updated button background color on hover */
+}
+
+/* Hide large textareas */
+textarea.hidden-textarea {
+  display: none;
+}
+
+/* Add this CSS to hide the textareas with the given IDs */
+#outbox1,
+#outbox2,
+#outbox3,
+#outbox4 {
+  display: none;
+}
+
+/* Improved playback system */
+audio {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 8px;
+}
+
+/* Adjusting layout */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 32px; /* Updated heading font size */
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #3f51b5; /* Updated heading color */
+}
+
+p {
+  margin: 10px 0;
+}
+
+.quarter {
+  display: inline-block;
+  width: 24%;
+}
+
+/* Styling for the progress bar */
+#loader-outer {
+  text-align: left;
+  display: inline-block;
+  background-color: #9f9f9f; /* Updated progress bar outer border color */
+  width: 425px; /* Updated progress bar width */
+  height: 20px; /* Updated progress bar height */
+}
+
+#loader-inner {
+  display: inline-block;
+  background: #3f51b5; /* Updated progress bar inner background color */
+  height: 100%;
+}
+
+/* Keyframes for the progress animation */
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Styling for select elements */
+select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Updated select element border radius */
+  background-color: #fff;
+  color: #3f51b5; /* Updated select element text color */
+}
+
+/* Styling for checkboxes */
+input[type="checkbox"] {
+  margin-right: 4px;
+}
